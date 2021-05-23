@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Login from "../pages/Login";
 import Destination from "../pages/Destination";
-import Map from "../pages/Map";
+import StreetMap from "../pages/StreetMap";
 import Error from "../pages/Error";
 
 export default function Router() {
@@ -12,7 +12,7 @@ export default function Router() {
                 <Switch>
                     <Route exact path="/" component={Login} />
                     <Route exact path="/destination" component={Destination} />
-                    <Route exact path="/Map" component={Map} />
+                    <Route exact path="/map" component={StreetMap} />
 
                     <Route component={Error} />
                 </Switch>
