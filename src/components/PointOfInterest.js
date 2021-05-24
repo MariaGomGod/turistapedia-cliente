@@ -29,13 +29,14 @@ const getIcon = categories => {
   return { ...baseIcon, path: faTree.icon[4], fillColor: "#4646DB" };
 }
 
-export default function PointOfInterest({ pointOfInterest, setInformation }) {
-    return <Marker
-        icon={getIcon(pointOfInterest.categories)}
-        label={pointOfInterest.name}
-        position={{ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }}
-        onClick={() =>
-            setInformation(<Information pointOfInterest={pointOfInterest} setInformation={setInformation} />)
-        }
-        zIndex={999} />;
+export default function PointOfInterest({ pointOfInterest, setInformation, setCenter }) {
+  return <Marker
+    icon={getIcon(pointOfInterest.categories)}
+    label={pointOfInterest.name}
+    position={{ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }}
+    onClick={() => {
+      setCenter({ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }); // Movemos el mapa centŕandolo en las coordenadas que les hemos pasado
+      setInformation(<Information pointOfInterest={pointOfInterest} setInformation={setInformation} />)
+    }}
+    zIndex={999} />;
 }

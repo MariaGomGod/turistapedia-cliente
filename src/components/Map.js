@@ -42,7 +42,8 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
         center: center,
         disableDoubleClickZoom: true, //  Con esto se evita que se incremente el zoom al hacer doble click sobre cualquier punto del mapa
         disableDefaultUI: true, // Con esto se ocultan los controles de aumentar y reducir zoom, entrar en modo Street View, ver a pantalla completa, etcétera
-        zoom: zoom
+        zoom: zoom,
+        gestureHandling: "cooperative"
     };
 
     return isLoaded ? (
@@ -57,7 +58,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
             onUnmount={() => setMap(null)}>
             {
                 pointsOfInterest.map((pointOfInterest, i) =>
-                    <PointOfInterest key={i} pointOfInterest={pointOfInterest} setInformation={setInformation} />)
+                    <PointOfInterest key={i} pointOfInterest={pointOfInterest} setInformation={setInformation} setCenter={setCenter} />)
             }
             {information}
         </GoogleMap>

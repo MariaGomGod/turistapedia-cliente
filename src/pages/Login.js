@@ -28,19 +28,20 @@ export default function Login() {
 
                 <ul id="account-links">
 
-                    <li><a href="#"><strong>¿Olvidaste la contraseña?</strong></a></li>
-                    <li><a href="#"><strong>Crear cuenta</strong></a></li>
-
+                    <li><a href="#" alt="contraseña olvidada">
+                        <strong>¿Olvidaste la contraseña?</strong>
+                        <span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;restaurarla</span>
+                        </a>
+                    </li>
+                    <li><a href="#" alt="crear cuenta"><span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;</span><strong>Crear una cuenta</strong></a></li>
                 </ul>
 
                 <div className="inputBlock"><p>Iniciar&nbsp;sesión</p></div>
 
-                <a href="#" className="social">
+                <a href="#" className="social" alt="iniciar sesión con facebook">
                 <FontAwesomeIcon icon={faFacebook} />
-                        <span className="sr-only">Iniciar&nbsp;sesión&nbsp;con</span>
-                        &nbsp;Facebook
+                        <span className="sr-only">Iniciar&nbsp;sesión&nbsp;con</span>&nbsp;Facebook
                 </a>
-
                 
                 </form>
                 </div>
