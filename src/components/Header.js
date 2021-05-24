@@ -2,8 +2,8 @@ import './Header.sass';
 import logo from '../images/logo.png';
 import logoCb from '../images/logo_cb.png';
 
+export default function Header({ coldColors, setColdColors, volume, setVolume }) {
 
-export default function Header({ coldColors, setColdColors }) {
     return (
         <>
             <div id="header">
@@ -13,6 +13,7 @@ export default function Header({ coldColors, setColdColors }) {
                 </div>
                 <div id="second-row">
                     <span id="color-selector" onClick={() => setColdColors(currentColdColors => !currentColdColors)}>{coldColors ? "Colores calientes" : "Colores fríos"}</span>
+                    <span id="volume" onClick={() => setVolume(currentVolume => currentVolume ? 0 : 1)}>{volume ? "Desactivar sonido" : "Activar sonido"}</span>
                 </div>
             </div>
         </>
