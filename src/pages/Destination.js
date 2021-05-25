@@ -1,3 +1,5 @@
+import './Destination.sass';
+
 export default function Destination() {
     return (
         <>
