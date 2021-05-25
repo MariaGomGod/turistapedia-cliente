@@ -48,11 +48,11 @@ export default function Information({ pointOfInterest, setInformation }) {
           pointOfInterest.links.map((link, i) => {
             return (<li key={i}>
               <span>
-               <FontAwesomeIcon icon={getIcon(link.description)} />
-               </span>
-               <span>
-               <span className="sr-only">Enlaza con</span>
-              <a className="poi-links" href={link.link} alt={'Página ' + (link.description === 'official' ? 'oficial' : 'de ' + link.description)} target="_blank" rel="noopener noreferrer">{link.link}</a>
+                <FontAwesomeIcon icon={getIcon(link.description)} />
+              </span>
+              <span>
+                <span className="sr-only">Enlaza con</span>
+                <a className="poi-links" href={link.link} alt={'Página ' + (link.description === 'official' ? 'oficial' : 'de ' + link.description)} target="_blank" rel="noopener noreferrer">{link.link}</a>
               </span>
             </li>);
           })

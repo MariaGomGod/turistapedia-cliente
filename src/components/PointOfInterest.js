@@ -20,13 +20,13 @@ const getIcon = categories => {
   if (categories.includes("alojamiento")) {
     return { ...baseIcon, path: faHotel.icon[4], fillColor: "#000070" };
   }
-  if (categories.includes("monumento")) {
-    return { ...baseIcon, path: faLandmark.icon[4], fillColor: "#9C9CFF" };
+  if (categories.includes("plaza")) {
+    return { ...baseIcon, path: faTree.icon[4], fillColor: "#4646DB" };
   }
   if (categories.includes("puente")) {
     return { ...baseIcon, path: faArchway.icon[4], fillColor: "#303042" };
   }
-  return { ...baseIcon, path: faTree.icon[4], fillColor: "#4646DB" };
+  return { ...baseIcon, path: faLandmark.icon[4], fillColor: "#9C9CFF" };
 }
 
 export default function PointOfInterest({ pointOfInterest, setInformation, setCenter }) {

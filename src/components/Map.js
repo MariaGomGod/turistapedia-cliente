@@ -1,3 +1,4 @@
+import './Map.sass';
 import { useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import PointOfInterest from './PointOfInterest';
@@ -53,7 +54,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
             zoom={zoom}
             onLoad={setMap}
             options={mapOptions}
-            onDragEnd={() => setCenter(map.getCenter())}
+            onDragEnd={() => setCenter({ lat: map.getCenter().lat(), lng: map.getCenter().lng() })}
             onZoomChanged={() => map && setZoom(map.getZoom())}
             onUnmount={() => setMap(null)}>
             {

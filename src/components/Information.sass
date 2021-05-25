@@ -1,29 +1,33 @@
-.poi .poi-links
-    color: #000
+@import '../styles/_variables'
+
+.poi
+    color: black
+    text-align: justify
+    padding: 0 10px
+    font-size: 14px
     
-.poi ul
-    list-style: none
-    padding: 0
+    ul
+        list-style: none
+        padding: 0
 
-    li
-        display: grid
-        grid-template: 1fr / 25px 1fr
-
-        svg.svg-inline--fa
-            margin-right: 8px
-            width: 16px
-
-.sr-only
-    position: absolute
-    left: -10000px
-    top: auto
-    width: 1px
-    height: 1px
-    overflow: hidden
+        li
+            display: grid
+            grid-template: 1fr / 25px 1fr
+            
+            svg.svg-inline--fa
+                margin-right: 8px
+                width: 16px
+                
+            a.poi-links
+                color: #000
 
 .card .photos
     width: 590px
     height: 350px
     border: 2px solid #000
 
-    
+div.gm-style
+    div.gm-style-iw-a
+        height: 450px !important
+        width: 1000px !important
+       
