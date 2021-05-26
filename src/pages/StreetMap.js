@@ -6,7 +6,7 @@ export default function StreetMap() {
 
   const [pointsOfInterest, setPointsOfInterest] = useState([]);
   const [center, setCenter] = useState({ lat: 37.3873069, lng: -6.0029337 });
-  const [categories, setCategories] = useState([ "restauración", "alojamiento", "plaza", "puente"]);
+  const [categories, setCategories] = useState(["restauración", "alojamiento", "plaza", "puente"]);
 
   useEffect(() => {
     fetch(`http://localhost:8080/poi?latitude=${center.lat}&longitude=${center.lng}&categories=${categories}`)

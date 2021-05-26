@@ -1,3 +1,5 @@
+@import '../styles/_variables'
+
 #header
     clear: both
 
@@ -8,13 +10,13 @@
         align-items: center
 
     #second-row
-        background-color: #FFE19C
-        color: #EDFFD9
+        background-color: $quinary
+        color: $colorblind-tertiary
         padding: 8px
         height: 40px
 
         #color-selector, #volume
-            background-color: #FF784F
+            background-color: $secondary
             border-color: 1px solid
             padding: 6px
             border-radius: 5px
@@ -32,9 +34,9 @@
 
 .colorblind #header
     #second-row 
-        background-color: #9C9CFF !important
-        color: #D9D9FF !important
+        background-color: $colorblind-quinary !important
+        color: $colorblind-septenary !important
 
         #color-selector, #volume
-            background-color: #4F4FFF !important
+            background-color: $colorblind-primary !important
 

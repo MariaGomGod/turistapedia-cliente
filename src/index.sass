@@ -1,25 +1,27 @@
+@import './styles/_variables'
+
 body 
   margin: 0
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  background-color: #3a3042
-  color: #ff784f
+  background-color: $primary
+  color: $secondary
 
 
 code 
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
 
 a, a:hover
-  color: #db9d47
+  color: $tertiary
   text-decoration: none
 
 .colorblind
-  background-color: #303042 !important
-  color: #4f4fff !important
+  background-color: $quaternary !important
+  color: $colorblind-primary!important
 
   a, a:hover
-    color: #4646db !important
+    color: $colorblind-quaternary !important
 
 .sr-only
     position: absolute
