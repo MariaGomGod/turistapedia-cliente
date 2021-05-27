@@ -15,7 +15,7 @@ function App() {
 
   return (
 
-    <div className={"App " + (coldColors ? "colorblind" : "")}> {/*Implanto con estilos sass (colorblind) un toggle para que cambie la gama de color para discapacitados visuales.*/}
+    <div className={"App " + (coldColors ? "colorblind" : "")}> 
       <GlobalContext.Provider value={{volume, setVolume}}>
         <Header coldColors={coldColors} setColdColors={setColdColors} volume={volume} setVolume={setVolume} />
         <div id="main-content">

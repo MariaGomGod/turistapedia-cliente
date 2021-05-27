@@ -40,7 +40,7 @@ export default function Login() {
 
                 <a href="#" className="social" alt="iniciar sesión con facebook">
                 <FontAwesomeIcon icon={faFacebook} />
-                        <span className="sr-only">Iniciar&nbsp;sesión&nbsp;con</span>&nbsp;Facebook
+                        <span className="sr-only">Iniciar&nbsp;sesión&nbsp;con</span>&nbsp;Facebook {/* Introduzco un span con una clase sass (sr-only) a la altura de index.js que no se va a ver en pantalla pero que sirve para accesibilidad (que se lo lea al usuario con discapacidad visual) */}
                 </a>
                 
                 </form>

@@ -22,7 +22,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
     const mapOptions = {
         styles: [
             {
-                featureType: "poi",  // Ocultar puntos de interés mostrados por defecto por Google Maps, para no saturar el mapa con los que se añadirán desde el backend
+                featureType: "poi",  // Oculto puntos de interés mostrados por defecto por Google Maps, para no saturar el mapa con los que se añadirán desde el backend
                 elementType: "labels",
                 stylers: [
                     {
@@ -31,7 +31,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
                 ]
             },
             {
-                featureType: "transit",  // Ocultar señales de transporte público mostrados por defecto por Google Maps
+                featureType: "transit",  // Oculto señales de transporte público mostrados por defecto por Google Maps
                 elementType: "all",
                 stylers: [
                     {
@@ -41,8 +41,8 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
             }
         ],
         center: center,
-        disableDoubleClickZoom: true, //  Con esto se evita que se incremente el zoom al hacer doble click sobre cualquier punto del mapa
-        disableDefaultUI: true, // Con esto se ocultan los controles de aumentar y reducir zoom, entrar en modo Street View, ver a pantalla completa, etcétera
+        disableDoubleClickZoom: true, // Evitamos que se incremente el zoom al hacer doble click sobre cualquier punto del mapa
+        disableDefaultUI: true, // Ocultamos los controles de aumentar y reducir zoom, entrar en modo Street View, ver a pantalla completa, etcétera
         zoom: zoom,
         gestureHandling: "cooperative"
     };
