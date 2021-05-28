@@ -18,19 +18,19 @@ export default function Pending() {
 
     return (
         <div>
-            <h2 className="">Puntos de interés pendientes de aprobar</h2>
-            <div className="">
+            <h2 className="title"><u>Puntos de interés pendientes de aprobar</u></h2>
+            <div className="pending-table">
                 <tr>
                     <th>Nombre</th>
                     <th>Categorías</th>
                 </tr>
                 {pending.map(element => {
                     return (
-                        <tr className="">
+                        <tr className="pending">
                             <td className="">{element.name}</td>
                             <td className="">{element.categories}</td>
 
-                            <td className="">
+                            <td className="publish-bottom">
                                 <button id={element._id} value="Aprobar" onClick={publish}>Aprobar</button>
                             </td>
                         </tr>

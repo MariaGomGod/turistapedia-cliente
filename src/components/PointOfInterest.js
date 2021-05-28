@@ -36,7 +36,7 @@ export default function PointOfInterest({ pointOfInterest, setInformation, setCe
     position={{ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }}
     onClick={() => {
       setCenter({ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }); // Movemos el mapa centŕandolo en las coordenadas que les hemos pasado
-      setInformation(<Information pointOfInterest={pointOfInterest} setInformation={setInformation} />)
+      setInformation(<Information pointOfInterest={pointOfInterest} setInformation={setInformation} />);
     }}
     zIndex={999} />;
 }

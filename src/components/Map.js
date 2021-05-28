@@ -3,12 +3,6 @@ import { useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import PointOfInterest from './PointOfInterest';
 
-const containerStyle = {
-    width: '70%',
-    height: '100%',
-    float: 'right'
-};
-
 export default function Map({ pointsOfInterest, center, setCenter }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -49,7 +43,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
 
     return isLoaded ? (
         <GoogleMap
-            mapContainerStyle={containerStyle}
+            mapContainerClassName="map"
             center={center}
             zoom={zoom}
             onLoad={setMap}

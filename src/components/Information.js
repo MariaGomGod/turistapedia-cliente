@@ -39,8 +39,7 @@ export default function Information({ pointOfInterest, setInformation }) {
     onCloseClick={() => {
       synth.cancel();
       setInformation(null);
-    }}
-    zIndex={-9999}>
+    }}>
     <div className="poi">
       <p>{pointOfInterest.description}</p>
       <ul>
@@ -58,7 +57,7 @@ export default function Information({ pointOfInterest, setInformation }) {
           })
         }
       </ul>
-      <div className="card">
+      <ul>
         {
           pointOfInterest.images.map((image, i) => {
             return (<li key={i}>
@@ -66,7 +65,7 @@ export default function Information({ pointOfInterest, setInformation }) {
             </li>);
           })
         }
-      </div>
+      </ul>
     </div>
   </InfoWindow>);
 }

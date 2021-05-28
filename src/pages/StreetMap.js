@@ -9,6 +9,10 @@ export default function StreetMap() {
   const [categories, setCategories] = useState(["restauración", "alojamiento", "plaza", "puente"]);
 
   useEffect(() => {
+    window.speechSynthesis.cancel();
+  }, []);
+
+  useEffect(() => {
     fetch(`http://localhost:8080/poi?latitude=${center.lat}&longitude=${center.lng}&categories=${categories}`)
       .then(response => response.json())
       .then(data => setPointsOfInterest(data));

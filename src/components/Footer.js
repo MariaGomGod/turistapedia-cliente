@@ -7,7 +7,7 @@ export default function Footer() {
                 <nav id="navbar">
                     <ul>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">ACERCA&nbsp;DE<span className="sr-only"></span></a>
+                            <a className="nav-link" href="#">ACERCA&nbsp;DE</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">CONDICIONES&nbsp;DE&nbsp;USO</a>

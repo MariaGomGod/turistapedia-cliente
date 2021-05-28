@@ -1,0 +1,70 @@
+@import ../styles/_variables
+
+#new-poi
+    padding: 3vw 12vw 0
+    
+    h1
+        margin: 0 0 2vw 0
+
+    form
+        width: min-content
+        margin: 0 auto
+
+        .form-section
+            font-size: 1.2em
+            text-align: left
+            width: min-content
+            padding: 1vw 2vw
+            border: 1px solid $tertiary
+            border-radius: 10px
+            margin-bottom: 1vw
+    
+            h4
+                margin: 1vw 0 0 0
+        
+            .form-group
+                margin: 1vw
+                padding: 0 1vw
+                clear: both
+
+                label
+                    display: inline-block
+                    float: left
+                    width: 100px
+
+                .control
+                    margin-top: 1vw
+                    clear: both
+    
+                .form-control  
+                    &[type^=text]
+                        width: 700px
+                        margin-top: 0.5vw
+                        height: 40px
+        
+                    &[type=textarea]
+                        height: 200px
+        
+                &.checkbox
+                    .control
+                        margin: 0
+        
+                    input[type=checkbox]
+                        float: left
+        
+                    label
+                        float: none
+        
+        .btn-primary
+            background-color: $secondary
+            color: $quinary
+            padding: 6px
+            border-radius: 5px
+            width: 150px
+            text-align: center
+            font-weight: bold
+            font-size: 16px
+
+            &:hover
+                cursor: pointer
+            
