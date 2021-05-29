@@ -6,6 +6,7 @@ export default function New() {
             <h1>Nuevo punto de interés</h1>
             <form>
                 <div className="form-section">
+                    <h3>Datos principales</h3>
                     <div className="form-group">
                         <div class="control">
 
@@ -126,7 +127,7 @@ export default function New() {
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Enviar</button>
+                <button type="submit" className="button">Enviar</button>
             </form>
         </div>);
 }

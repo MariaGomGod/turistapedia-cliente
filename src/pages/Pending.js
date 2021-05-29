@@ -1,3 +1,5 @@
+import './Pending.sass';
+
 import { useState, useEffect } from 'react';
 
 export default function Pending() {
@@ -17,26 +19,27 @@ export default function Pending() {
     };
 
     return (
-        <div>
-            <h2 className="title"><u>Puntos de interés pendientes de aprobar</u></h2>
-            <div className="pending-table">
+        <div id="pending">
+            <h1 className="title">Puntos de interés pendientes de aprobar</h1>
+            <table>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Categorías</th>
+                    <th className="name">Nombre</th>
+                    <th className="categories">Categorías</th>
+                    <th>Aprobar</th>
                 </tr>
                 {pending.map(element => {
                     return (
                         <tr className="pending">
-                            <td className="">{element.name}</td>
-                            <td className="">{element.categories}</td>
+                            <td className="name">{element.name}</td>
+                            <td className="categories">{element.categories}</td>
 
                             <td className="publish-bottom">
-                                <button id={element._id} value="Aprobar" onClick={publish}>Aprobar</button>
+                                <button className="button" id={element._id} value="Aprobar" onClick={publish}>Aprobar</button>
                             </td>
                         </tr>
                     );
                 })}
-            </div>
+            </table>
         </div>
     )
 }

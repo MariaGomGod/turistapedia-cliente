@@ -2,9 +2,6 @@
 
 #new-poi
     padding: 3vw 12vw 0
-    
-    h1
-        margin: 0 0 2vw 0
 
     form
         width: min-content
@@ -19,8 +16,9 @@
             border-radius: 10px
             margin-bottom: 1vw
     
-            h4
+            h3
                 margin: 1vw 0 0 0
+                color: $tertiary
         
             .form-group
                 margin: 1vw
@@ -54,17 +52,6 @@
         
                     label
                         float: none
-        
-        .btn-primary
-            background-color: $secondary
-            color: $quinary
-            padding: 6px
-            border-radius: 5px
-            width: 150px
-            text-align: center
-            font-weight: bold
-            font-size: 16px
 
-            &:hover
-                cursor: pointer
-            
+.colorblind #new-poi h3
+    color: $colorblind-tertiary !important
