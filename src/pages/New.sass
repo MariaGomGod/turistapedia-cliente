@@ -30,18 +30,29 @@
                     float: left
                     width: 100px
 
+                input, textarea
+                    font-size: 14px
+
                 .control
                     margin-top: 1vw
                     clear: both
     
                 .form-control  
-                    &[type^=text]
+                    &[type=text], &[type=number]
                         width: 700px
                         margin-top: 0.5vw
                         height: 40px
         
-                    &[type=textarea]
-                        height: 200px
+                textarea.form-control
+                    height: 200px
+                    width: 700px
+                    margin-top: 0.5vw
+                    padding: 5px
+                    border-radius: 5px
+                    border-color: #fff
+
+                    &:focus:valid
+                        border-color: blue
         
                 &.checkbox
                     .control
