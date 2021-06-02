@@ -25,40 +25,36 @@ export default function New() {
         .then(() => form.reset()); // vaciamos el formulario
     }
 
-    function updateName(e) {
+    function updateTextField(e, field) {
+
+        // Creamos una función genérica para actualizar un campo de tipo string, dado su nombre y el input que contiene su nuevo valor.
+
         const input = e.target.value;
         setPointOfInterest(currentPointOfInterest => {
             const newPointOfInterest = {...currentPointOfInterest};
-            newPointOfInterest.name = input;
+            newPointOfInterest[field] = input;
             return newPointOfInterest;
-        })
+        });
     }
 
-    function updateDescription(e) {
-        const input = e.target.value;
-        setPointOfInterest(currentPointOfInterest => {
-            const newPointOfInterest = {...currentPointOfInterest};
-            newPointOfInterest.description = input;
-            return newPointOfInterest;
-        })
-    }
+    function updateCheckboxField(e, field) {
 
-    function updateLatitude(e) {
-        const input = e.target.value;
-        setPointOfInterest(currentPointOfInterest => {
-            const newPointOfInterest = {...currentPointOfInterest};
-            newPointOfInterest.latitude = input;
-            return newPointOfInterest;
-        })
-    }
+        // Creamos una función genérica para actualizar un campo de tipo array de strings, dado su nombre y el input que contiene su nuevo valor.
+        // Si el input está marcado, el nuevo valor se añade al campo, de lo contrario, se eliminará.
 
-    function updateLongitude(e) {
+        const checked = e.target.checked;
         const input = e.target.value;
         setPointOfInterest(currentPointOfInterest => {
             const newPointOfInterest = {...currentPointOfInterest};
-            newPointOfInterest.longitude = input;
+            newPointOfInterest[field] = newPointOfInterest[field] || [];
+
+            if (checked) {
+                newPointOfInterest[field] = [...newPointOfInterest[field], input];
+            } else {
+                newPointOfInterest[field] = newPointOfInterest[field].filter(element => element !== input);
+            }
             return newPointOfInterest;
-        })
+        });
     }
 
     return (
@@ -69,13 +65,12 @@ export default function New() {
                     <h3>Datos principales</h3>
                     <div className="form-group">
                         <div class="control">
-
                             <label for="name">Nombre</label>
-                            <input type="text" className="form-control" id="name" placeholder="Introduzca el nombre" required onChange={updateName}></input>
+                            <input type="text" className="form-control" id="name" placeholder="Introduzca el nombre" required onChange={e => updateTextField(e, "name")}></input>
                         </div>
                         <div class="control">
                             <label for="description">Descripción</label>
-                            <textarea className="form-control" id="description" placeholder="Introduzca la descripción" required onChange={updateDescription}></textarea>
+                            <textarea className="form-control" id="description" placeholder="Introduzca la descripción" required onChange={e => updateTextField(e, "description")}></textarea>
                         </div>
                     </div>
 
@@ -83,11 +78,11 @@ export default function New() {
                     <div className="form-group">
                         <div class="control">
                             <label for="latitude">Latitud</label>
-                            <input type="number" className="form-control" id="latitude" placeholder="Introduzca la latitud" step="0.0000001" required onChange={updateLatitude}></input><br />
+                            <input type="number" className="form-control" id="latitude" placeholder="Introduzca la latitud" step="0.000000000000001" required onChange={e => updateTextField(e, "latitude")}></input><br />
                         </div>
                         <div class="control">
                             <label for="logitude">Longitud</label>
-                            <input type="number" className="form-control" id="longitude" placeholder="Introduzca la longitud" step="0.0000001" required onChange={updateLongitude}></input>
+                            <input type="number" className="form-control" id="longitude" placeholder="Introduzca la longitud" step="0.000000000000001" required onChange={e => updateTextField(e, "longitude")}></input>
                         </div>
                     </div>
 
@@ -95,43 +90,43 @@ export default function New() {
                     <div id="categories-checkbox" className="form-group checkbox">
                         <div class="control">
                             <label htmlFor="category-1">Restauración</label>
-                            <input type="checkbox" id="category-1" value="restauración"></input>
+                            <input type="checkbox" id="category-1" value="restauración" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-2">Bar</label>
-                            <input type="checkbox" id="category-2" value="bar"></input>
+                            <input type="checkbox" id="category-2" value="bar" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-3">Restaurante</label>
-                            <input type="checkbox" id="category-3" value="restaurante"></input>
+                            <input type="checkbox" id="category-3" value="restaurante" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-4">Alojamiento</label>
-                            <input type="checkbox" id="category-4" value="alojamiento"></input>
+                            <input type="checkbox" id="category-4" value="alojamiento" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-5">Hotel</label>
-                            <input type="checkbox" id="category-5" value="hotel"></input>
+                            <input type="checkbox" id="category-5" value="hotel" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-6">Hostal</label>
-                            <input type="checkbox" id="category-6" value="hostal"></input>
+                            <input type="checkbox" id="category-6" value="hostal" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-7">Apartamento</label>
-                            <input type="checkbox" id="category-7" value="apartamento"></input>
+                            <input type="checkbox" id="category-7" value="apartamento" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-8">Monumento</label>
-                            <input type="checkbox" id="category-8" value="monumento"></input>
+                            <input type="checkbox" id="category-8" value="monumento" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-9">Puente</label>
-                            <input type="checkbox" id="category-9" value="puente"></input>
+                            <input type="checkbox" id="category-9" value="puente" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                         <div class="control">
                             <label htmlFor="category-10">Plaza</label>
-                            <input type="checkbox" id="category-10" value="plaza"></input>
+                            <input type="checkbox" id="category-10" value="plaza" onChange={e => updateCheckboxField(e, "categories")}></input>
                         </div>
                     </div>
                 </div>
@@ -141,19 +136,19 @@ export default function New() {
                         <div class="control">
 
                             <label htmlFor="accesible-1">Sanitarios&nbsp;adaptados</label>
-                            <input type="checkbox" id="accesible-1" value="adaptedToilet"></input><br />
+                            <input type="checkbox" id="accesible-1" value="adaptedToilet" onChange={e => updateCheckboxField(e, "accessible")}></input><br />
                         </div>
                         <div class="control">
                             <label htmlFor="accesible-2">Acceso&nbsp;adaptado</label>
-                            <input type="checkbox" id="accesible-2" value="adaptedAcces"></input><br />
+                            <input type="checkbox" id="accesible-2" value="adaptedAccess" onChange={e => updateCheckboxField(e, "accessible")}></input><br />
                         </div>
                         <div class="control">
                             <label htmlFor="accesible-3">Habitaciones&nbsp;adaptadas</label>
-                            <input type="checkbox" id="accesible-3" value="adaptedRoom"></input><br />
+                            <input type="checkbox" id="accesible-3" value="adaptedRoom" onChange={e => updateCheckboxField(e, "accessible")}></input><br />
                         </div>
                         <div class="control">
                             <label htmlFor="accesible-4">Audio&nbsp;guía</label>
-                            <input type="checkbox" id="accesible-4" value="audioGuide"></input><br />
+                            <input type="checkbox" id="accesible-4" value="audioGuide" onChange={e => updateCheckboxField(e, "accessible")}></input><br />
                         </div>
                     </div>
                     <h3>Web oficial/Red social y enlaces</h3>
