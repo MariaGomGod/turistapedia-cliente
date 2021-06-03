@@ -31,7 +31,7 @@ export default function Pending() {
                     return (
                         <tr className="pending">
                             <td className="name">{element.name}</td>
-                            <td className="categories">{element.categories}</td>
+                            <td className="categories">{element.categories.join(", ")}</td>
 
                             <td className="publish-bottom">
                                 <button className="button" id={element._id} value="Aprobar" onClick={publish}>Aprobar</button>
