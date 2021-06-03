@@ -28,11 +28,18 @@ export default function New() {
                 form.reset();           // vaciamos el formulario
                 NotificationManager.success("Punto de interés añadido con éxito", "Éxito", 3000);
             } else {
-                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+
+                if (response.status >= 400 && response.status < 500) {
+                    NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 3000);
+                } else {
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                }
             }
             /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
             es exitosa o no. */
-        });
+        })
+        .catch(() =>  NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+        /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     }
 
     function updateTextField(e, field) {
