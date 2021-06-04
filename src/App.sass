@@ -66,6 +66,12 @@ h1
         cursor: pointer
         text-shadow: 2px 2px 4px $button-shadow
 
+.notification-container
+    width: 20vw !important
+
+    .notification
+        opacity: 1
+
 .colorblind
     .button
         background-color: $colorblind-primary !important
@@ -73,3 +79,10 @@ h1
 
         &:hover
             text-shadow: 2px 2px 4px $colorblind-button-shadow !important
+
+    .notification-container
+        .notification-success
+            background-color: $colorblind-quinary !important
+
+        .notification-error
+            background-color: $colorblind-primary !important

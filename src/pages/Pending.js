@@ -1,3 +1,5 @@
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 import './Pending.sass';
 import { useState, useEffect } from 'react';
 import { BASE_API_URL } from "../config/config";
@@ -15,11 +17,25 @@ export default function Pending() {
     const publish = e => {
         const id = e.target.id;
         fetch(`${BASE_API_URL}/poi/${id}/publish`, { method: 'PUT' })
-            .then(data => setPending(currentPending => currentPending.filter(element => element._id !== id)));
+            .then(response => {
+                if (response.ok) {
+                    setPending(currentPending => currentPending.filter(element => element._id !== id));
+                    NotificationManager.success("Punto de interés aprobado con éxito", "Éxito", 3000);
+                } else {
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                }
+                /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
+                es exitosa o no. */
+            })
+            .catch(() =>  NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+            /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
     return (
         <div id="pending">
+             <NotificationContainer />
+            {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo punto de interés. */}
+
             <h1 className="title">Puntos de interés pendientes de aprobar</h1>
             <table>
                 <thead>
