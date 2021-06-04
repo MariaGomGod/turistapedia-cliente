@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import './New.sass';
+import { BASE_API_URL } from "../config/config";
 
 export default function New() {
 
@@ -14,7 +15,7 @@ export default function New() {
         const form = e.target;
 
         fetch(
-            'http://localhost:8080/poi',
+            `${BASE_API_URL}/poi`,
             {
                 method: 'POST',
                 body: JSON.stringify(pointOfInterest),

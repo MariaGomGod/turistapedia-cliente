@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Map from '../components/Map';
 import Filters from '../components/Filters';
+import { BASE_API_URL } from "../config/config";
 
 export default function StreetMap() {
 
@@ -18,10 +19,10 @@ export default function StreetMap() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/poi?latitude=${center.lat}&longitude=${center.lng}&categories=${categories}&accessible=${accessible}`)
+    fetch(`${BASE_API_URL}/poi?latitude=${center.lat}&longitude=${center.lng}&categories=${categories}&accessible=${accessible}`)
       .then(response => response.json())
       .then(data => setPointsOfInterest(data));
-  }, [center, categories, accessible]);
+  }, [BASE_API_URL, center, categories, accessible]);
 
   return (
     <>
