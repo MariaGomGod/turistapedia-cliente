@@ -22,7 +22,7 @@ export default function Filters({ setCategories, setAccessible }) {
 
     return (
         <div id="filters">
-            <div class="border-section">
+            <div className="border-section">
                 <div id="filter-wrapper">
                     <div className="filter">
                         <h3>Filtrar&nbsp;por&nbsp;categorías</h3>

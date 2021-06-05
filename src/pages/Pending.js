@@ -12,7 +12,7 @@ export default function Pending() {
         fetch(`${BASE_API_URL}/poi/pending`)
             .then(response => response.json())
             .then(data => setPending(data));
-    }, [BASE_API_URL]);
+    }, []);
 
     const publish = e => {
         const id = e.target.id;

@@ -22,7 +22,7 @@ export default function StreetMap() {
     fetch(`${BASE_API_URL}/poi?latitude=${center.lat}&longitude=${center.lng}&categories=${categories}&accessible=${accessible}`)
       .then(response => response.json())
       .then(data => setPointsOfInterest(data));
-  }, [BASE_API_URL, center, categories, accessible]);
+  }, [center, categories, accessible]);
 
   return (
     <>
