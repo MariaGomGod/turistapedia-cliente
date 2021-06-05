@@ -16,12 +16,19 @@ a, a:hover
   color: $tertiary
   text-decoration: none
 
+a:hover
+  text-shadow: 2px 2px 4px $tertiary !important
+  font-weight: 300
+
 .colorblind
   background-color: $quaternary !important
   color: $colorblind-primary!important
 
   a, a:hover
     color: $colorblind-tertiary !important
+
+  a:hover
+    text-shadow: 2px 2px 4px $colorblind-tertiary !important
 
 .sr-only
     position: absolute

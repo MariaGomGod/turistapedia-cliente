@@ -24,10 +24,9 @@ export default function Information({ pointOfInterest, setInformation }) {
 
   const { volume } = useContext(GlobalContext);
 
-  synth.cancel();
-  speech.text = pointOfInterest.description;
-
   useEffect(() => {
+    synth.cancel();
+    speech.text = pointOfInterest.description;
     speech.volume = volume;
     if (!synth.speaking && speech.volume) {
       synth.speak(speech);
