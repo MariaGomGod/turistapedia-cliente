@@ -1,9 +1,14 @@
 import './Map.sass';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import PointOfInterest from './PointOfInterest';
 
-export default function Map({ pointsOfInterest, center, setCenter }) {
+/* Al cambiar un estado cualquiera, el mapa se re-renderizaba (aunque el mapa no supiera nada de él). Al pulsar en un punto de interés y abrirse la ventana de
+información, Google Maps cambia por un momento el centro del mapa (que no es el mío), y al re-renderizarse el mismo, lo "pinta" en nuestro centro, causando un efecto 
+visual poco estético. No quiero que el mapa se re-renderice si no ha cambiado nada que le pueda afectar. Esto lo conseguimos "memoizando" (React.memo) el componente
+del mapa. Con ello, evitamos que React vuelva a re-renderizar el componente si no ha cambiado nada en sus props. */
+
+export default memo(function Map ({ pointsOfInterest, center, setCenter }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyCNJkyAndouVZpDlbY6ns_il2PZVjenfns"
@@ -16,7 +21,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
     const mapOptions = {
         styles: [
             {
-                featureType: "poi",  // Oculto puntos de interés mostrados por defecto por Google Maps, para no saturar el mapa con los que se añadirán desde el backend
+                featureType: "poi",  // Oculto puntos de interés mostrados por defecto por Google Maps, para no saturar el mapa con los que se añadirán desde el backend.
                 elementType: "labels",
                 stylers: [
                     {
@@ -25,7 +30,7 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
                 ]
             },
             {
-                featureType: "transit",  // Oculto señales de transporte público mostrados por defecto por Google Maps
+                featureType: "transit",  // Oculto señales de transporte público mostrados por defecto por Google Maps.
                 elementType: "all",
                 stylers: [
                     {
@@ -58,4 +63,4 @@ export default function Map({ pointsOfInterest, center, setCenter }) {
             {information}
         </GoogleMap>
     ) : <></>
-}
+});

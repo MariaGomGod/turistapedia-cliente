@@ -31,7 +31,7 @@ export default function Information({ pointOfInterest, setInformation }) {
     if (!synth.speaking && speech.volume) {
       synth.speak(speech);
     }
-  }, [volume]);
+  }, [volume, pointOfInterest]);
 
   return (<InfoWindow
     position={{ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }}
