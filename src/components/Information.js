@@ -12,12 +12,12 @@ speech.rate = 0.8;
 speech.lang = "es";
 
 const getIcon = description => {
-  if (description === "official") {
-    return faAt;
+  if (description === "facebook") {
+    return faFacebook;
   } else if (description === "tripadvisor") {
     return faTripadvisor;
   }
-  return faFacebook;
+  return faAt;
 }
 
 export default function Information({ pointOfInterest, setInformation }) {
@@ -58,7 +58,7 @@ export default function Information({ pointOfInterest, setInformation }) {
       </ul>
       <ul>
         {
-          pointOfInterest.images.map((image, i) => {
+          pointOfInterest.images?.map((image, i) => {
             return (<li key={i}>
               <img className="photos" src={image} alt="imagenes" />
             </li>);
