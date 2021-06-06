@@ -93,6 +93,21 @@ export default function New() {
         inputs.forEach(element => element.required = !atLeastOneChecked);
     }
 
+    function updateLink(e) {
+        const link = e.target.value;
+        const description = e.target.name;
+
+        setPointOfInterest(currentPointOfInterest => {
+            const newPointOfInterest = { ...currentPointOfInterest };
+            newPointOfInterest.links = (newPointOfInterest.links || []).filter(element => element.description !== description);
+
+            if (link) {
+                newPointOfInterest.links = [...newPointOfInterest.links, {link: link, description: description}];
+            }
+            return newPointOfInterest;
+        });
+    }
+
     return (
         <div id="new-poi">
             <NotificationContainer />
@@ -117,11 +132,11 @@ export default function New() {
                     <div className="form-group">
                         <div className="control">
                             <label htmlFor="latitude">Latitud</label>
-                            <input type="number" className="form-control" id="latitude" placeholder="Introduzca la latitud" step="0.000000000000001" required onChange={e => updateTextField(e, "latitude")}></input><br />
+                            <input type="number" className="form-control" id="latitude" placeholder="Introduzca la latitud" step="0.000000000000000001" required onChange={e => updateTextField(e, "latitude")}></input><br />
                         </div>
                         <div className="control">
                             <label htmlFor="logitude">Longitud</label>
-                            <input type="number" className="form-control" id="longitude" placeholder="Introduzca la longitud" step="0.000000000000001" required onChange={e => updateTextField(e, "longitude")}></input>
+                            <input type="number" className="form-control" id="longitude" placeholder="Introduzca la longitud" step="0.000000000000000001" required onChange={e => updateTextField(e, "longitude")}></input>
                         </div>
                     </div>
 
@@ -193,31 +208,34 @@ export default function New() {
                     <h3>Web oficial/Red social y enlaces</h3>
                     <div className="form-group">
                         <div className="control">
-                            <input type="text" className="form-control" placeholder="Web oficial" name="official"></input>
+                            <input type="text" className="form-control" placeholder="Web oficial" name="official" onChange={updateLink}></input>
                         </div>
                         <div className="control">
-                            <input type="text" className="form-control" placeholder="Tripadvisor" name="tripadvisor"></input>
+                            <input type="text" className="form-control" placeholder="Tripadvisor" name="tripadvisor" onChange={updateLink}></input>
                         </div>
                         <div className="control">
-                            <input type="text" className="form-control" placeholder="Facebook" name="facebook"></input>
+                            <input type="text" className="form-control" placeholder="Facebook" name="facebook" onChange={updateLink}></input>
                         </div>
                         <div className="control">
-                            <input type="text" className="form-control" placeholder="Otros" name="misc"></input>
+                            <input type="text" className="form-control" placeholder="Otros" name="misc" onChange={updateLink}></input>
                         </div>
                     </div>
                     <h3>Fotografías</h3>
                     <div className="form-group">
                         <div className="control">
                             <label htmlFor="foto-1">&nbsp;Foto&nbsp;1</label>
-                            <input type="text" className="form-control" placeholder="Foto-1" name="foto-1"></input>
+                            <input type="text" className="form-control" placeholder="Enlace" name="foto-1"></input>
+                            <input type="text" className="form-control" placeholder="Descripción" name="desc-foto-1"></input>
                         </div>
                         <div className="control">
                             <label htmlFor="foto-2">&nbsp;Foto&nbsp;2</label>
-                            <input type="text" className="form-control" placeholder="Foto-2" name="foto-2"></input>
+                            <input type="text" className="form-control" placeholder="Enlace" name="foto-2"></input>
+                            <input type="text" className="form-control" placeholder="Descripción" name="desc-foto-2"></input>
                         </div>
                         <div className="control">
                             <label htmlFor="foto-3">&nbsp;Foto&nbsp;3</label>
-                            <input type="text" className="form-control" placeholder="Foto-3" name="foto-3"></input>
+                            <input type="text" className="form-control" placeholder="Enlace" name="foto-3"></input>
+                            <input type="text" className="form-control" placeholder="Descripción" name="desc-foto-3"></input>
                         </div>
                     </div>
                 </div>
