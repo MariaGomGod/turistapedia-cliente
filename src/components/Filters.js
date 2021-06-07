@@ -30,6 +30,8 @@ export default function Filters({ setCategories, setAccessible }) {
                         <label htmlFor="category-1">Restauración</label><br></br>
                         <input type="checkbox" id="category-2" value="alojamiento" onChange={handleCategoryClicked} defaultChecked={true}></input>
                         <label htmlFor="category-2">Alojamiento</label><br></br>
+                        <input type="checkbox" id="category-3" value="monumento" onChange={handleCategoryClicked} defaultChecked={true}></input>
+                        <label htmlFor="category-3">Monumento</label><br></br>
                         <input type="checkbox" id="category-3" value="puente" onChange={handleCategoryClicked} defaultChecked={true}></input>
                         <label htmlFor="category-3">Puente</label><br></br>
                         <input type="checkbox" id="category-4" value="plaza" onChange={handleCategoryClicked} defaultChecked={true}></input>

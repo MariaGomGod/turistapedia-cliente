@@ -7,7 +7,7 @@ export default function StreetMap() {
 
   const [pointsOfInterest, setPointsOfInterest] = useState([]);
   const [center, setCenter] = useState({ lat: 37.3873069, lng: -6.0029337 });
-  const [categories, setCategories] = useState(["restauración", "alojamiento", "plaza", "puente"]); 
+  const [categories, setCategories] = useState(["restauración", "alojamiento", "monumento", "plaza", "puente"]); 
   // Partimos de un array con todas las categorías. Añadir una categoría hace que potencialmente se muestren más puntos de interés.
   const [accessible, setAccessible] = useState([]);
   // Partimos de un array vacío, pues añadir un tipo de accesibilidad hace que potencialmente se muestren menos puntos de interés al ser más restrictivo.
