@@ -45,7 +45,7 @@ export default function Create() {
             /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
             es exitosa o no. */
         })
-        .catch(() =>  NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     }
 
