@@ -58,9 +58,9 @@ export default function Information({ pointOfInterest, setInformation }) {
       </ul>
       <ul>
         {
-          pointOfInterest.images?.map((image, i) => {
+          pointOfInterest.photos?.map((photo, i) => {
             return (<li key={i}>
-              <img className="photos" src={image} alt="imagenes" />
+              <img className="photos" src={photo.link} alt={photo.description} title={photo.description} />
             </li>);
           })
         }

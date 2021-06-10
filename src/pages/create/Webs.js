@@ -6,7 +6,8 @@ export default function Webs({ setPointOfInterest }) {
 
         setPointOfInterest(currentPointOfInterest => {
             const newPointOfInterest = { ...currentPointOfInterest };
-            newPointOfInterest.links = (newPointOfInterest.links || []).filter(element => element.description !== description);
+            newPointOfInterest.links = newPointOfInterest.links || [];
+            newPointOfInterest.links = newPointOfInterest.links.filter(element => element.description !== description);
 
             if (link) {
                 newPointOfInterest.links = [...newPointOfInterest.links, {link: link, description: description}];

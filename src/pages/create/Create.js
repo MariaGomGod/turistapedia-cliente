@@ -62,7 +62,7 @@ export default function Create() {
                     <Categories setPointOfInterest={setPointOfInterest} />
                     <Accesibility setPointOfInterest={setPointOfInterest} />
                     <Webs setPointOfInterest={setPointOfInterest} />
-                    <Photos />
+                    <Photos setPointOfInterest={setPointOfInterest} />
                 </div>
                 <button type="submit" className="button">Enviar</button>
             </form>
