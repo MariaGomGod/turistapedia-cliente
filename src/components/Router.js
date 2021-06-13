@@ -7,7 +7,7 @@ import Create from "../pages/create/Create";
 import StreetMap from "../pages/StreetMap";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
-import SecurityQuestion from "../pages/SecurityQuestion";
+import ResetPassword from "../pages/ResetPassword";
 
 export default function Router() {
     return (
@@ -21,8 +21,8 @@ export default function Router() {
                     <Route exact path="/create" component={Create} />
                     <Route exact path="/map" component={StreetMap} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/security-question" component={SecurityQuestion} />
-
+                    <Route exact path="/reset-password" component={ResetPassword} />
+                    
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>

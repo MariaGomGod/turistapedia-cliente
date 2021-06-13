@@ -79,7 +79,7 @@ export default function Register() {
         <div className="wrapper">
             <div id="register">
                 <NotificationContainer />
-                {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo punto de interés. */}
+                {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo registro. */}
 
                 <h1>Regístrate en Turistapedia</h1>
 
