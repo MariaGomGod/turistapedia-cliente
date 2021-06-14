@@ -34,7 +34,7 @@ export default function Information({ pointOfInterest, setInformation }) {
   }, [volume, pointOfInterest]);
 
   return (<InfoWindow
-    position={{ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }}
+    position={{ lat: pointOfInterest.location.coordinates[1], lng: pointOfInterest.location.coordinates[0] }}
     onCloseClick={() => {
       synth.cancel();
       setInformation(null);

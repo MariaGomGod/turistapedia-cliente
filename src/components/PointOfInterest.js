@@ -30,12 +30,14 @@ const getIcon = categories => {
 }
 
 export default function PointOfInterest({ pointOfInterest, setInformation, setCenter }) {
+  const latitude = pointOfInterest.location.coordinates[1];
+  const longitude = pointOfInterest.location.coordinates[0];
   return <Marker
     icon={getIcon(pointOfInterest.categories)}
     label={pointOfInterest.name}
-    position={{ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }}
+    position={{ lat: latitude, lng: longitude }}
     onClick={() => {
-      setCenter({ lat: pointOfInterest.latitude, lng: pointOfInterest.longitude }); // Movemos el mapa centŕandolo en las coordenadas que les hemos pasado
+      setCenter({ lat: latitude, lng: longitude }); // Movemos el mapa centŕandolo en las coordenadas que les hemos pasado
       setInformation(<Information pointOfInterest={pointOfInterest} setInformation={setInformation} />);
     }}
     zIndex={999} />;
