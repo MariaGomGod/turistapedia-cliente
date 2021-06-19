@@ -1,6 +1,7 @@
 import './Header.sass';
 import logo from '../images/logo.png';
 import logoCb from '../images/logo_cb.png';
+import LogOut from './LogOut';
 
 export default function Header({ coldColors, setColdColors, volume, setVolume }) {
 
@@ -12,6 +13,7 @@ export default function Header({ coldColors, setColdColors, volume, setVolume })
                     <h1>La&nbsp;web&nbsp;del&nbsp;turista</h1>
                 </div>
                 <div id="second-row">
+                    <LogOut />
                     <span className="button" onClick={() => setColdColors(currentColdColors => !currentColdColors)}>{coldColors ? "Colores calientes" : "Colores fríos"}</span>
 
                     {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 

@@ -9,14 +9,25 @@ export default function Pending() {
     const [pending, setPending] = useState([]);
 
     useEffect(() => {
-        fetch(`${BASE_API_URL}/poi/pending`)
+        fetch(`${BASE_API_URL}/poi/pending`, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+                // Intento llamar a este endpoint con las credenciales del usuario.
+                // Las credenciales las obtenemos en el Login.js a través de "token".
+            }
+        })
             .then(response => response.json())
             .then(data => setPending(data));
     }, []);
 
     const publish = e => {
         const id = e.target.id;
-        fetch(`${BASE_API_URL}/poi/${id}/publish`, { method: 'PUT' })
+        fetch(`${BASE_API_URL}/poi/${id}/publish`, {
+            method: 'PUT',
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     setPending(currentPending => currentPending.filter(element => element._id !== id));
@@ -33,7 +44,12 @@ export default function Pending() {
 
     const remove = e => {
         const id = e.target.id;
-        fetch(`${BASE_API_URL}/poi/${id}`, { method: 'DELETE' })
+        fetch(`${BASE_API_URL}/poi/${id}`, {
+            method: 'DELETE',
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     setPending(currentPending => currentPending.filter(element => element._id !== id));
