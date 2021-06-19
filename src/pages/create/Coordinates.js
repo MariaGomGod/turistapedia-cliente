@@ -7,7 +7,7 @@ export default function Coordinates({ setPointOfInterest }) {
         const input = e.target.value;
         setPointOfInterest(currentPointOfInterest => {
             const newPointOfInterest = { ...currentPointOfInterest };
-            const currentCoordinates = currentPointOfInterest.location?.coordinates || [null, null];
+            const currentCoordinates = currentPointOfInterest.location?.coordinates || [];
             const newCoordinates = [...currentCoordinates];
             if (field === 'longitude') {
                 newCoordinates[0] = input;
