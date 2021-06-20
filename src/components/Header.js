@@ -12,7 +12,7 @@ export default function Header({ coldColors, setColdColors, volume, setVolume, a
         // que no se pierde al navegar o recargar una página.
         const authenticatedUser = localStorage.getItem("user") || "{}";
         setAuthenticatedUser(JSON.parse(authenticatedUser));
-    }, []);
+    }, [setAuthenticatedUser]);
 
     return (
         <>
