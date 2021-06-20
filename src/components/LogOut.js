@@ -1,17 +1,18 @@
-export default function LogOut() {
+import './Logout.sass';
 
-    let user = localStorage.getItem("user");
+export default function LogOut({ authenticatedUser, setAuthenticatedUser }) {
 
     const logOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        user = null;
+        setAuthenticatedUser({});
+        window.location.href = '/';
     };
 
-    return (user ?
+    return (
         <div>
-            <span>Hola, {JSON.parse(user).email}</span>
-            <button value="Cerrar sesión" onClick={logOut}>Cerrar sesión</button>
+            <span className="button logout" onClick={logOut}>Cerrar sesión</span>
+            <span id="greeting">¡Hola, {authenticatedUser.email}!</span>
         </div>
-        : <></>);
+    );
 }

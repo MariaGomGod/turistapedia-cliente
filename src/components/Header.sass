@@ -10,16 +10,27 @@
         align-items: center
 
     #second-row
+        background-color: $senary
+        color: $senary
+        padding: 8px
+        height: 48px
+
+    #third-row
         background-color: $quinary
         color: $senary
         padding: 8px
         height: 48px
 
-        .button
-            float: right
-            margin-right: 8px
+    .button, span
+        float: right
+        margin-right: 8px
+        height: 32px
 
 .colorblind #header
     #second-row 
+        background-color: $colorblind-senary !important
+        color: $colorblind-senary !important
+
+    #third-row 
         background-color: $colorblind-quinary !important
         color: $colorblind-senary !important

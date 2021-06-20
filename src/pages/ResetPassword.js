@@ -1,10 +1,15 @@
 import './ResetPassword.sass';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { useHistory } from "react-router-dom";
+import { GlobalContext } from '../App';
 
 export default function ResetPassword() {
 
     const [resetPassword, setResetPassword] = useState({});
+    const { setAuthenticatedUser } = useContext(GlobalContext);
+
+    const history = useHistory();
 
     const resetDataPassword = e => {
 
@@ -22,8 +27,15 @@ export default function ResetPassword() {
             .then(response => {
                 if (response.ok) {
                     setResetPassword({}); // vaciamos el estado
-                    form.reset();           // vaciamos el formulario
+                    form.reset();         // vaciamos el formulario
+
+                    // Estamos deslogando al usuario para forzarle a que introduzca de nuevo la nueva contraseña que ha proporcionado,
+                    // para minimizar el riesgo de olvido o de que en realidad no sea la contraseña que el usuario quería.
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    setAuthenticatedUser({});
                     NotificationManager.success("Nueva contraseña creada exitosamente. Redirigiendo a la página de inicio de sesión...", "Éxito", 3000);
+                    setInterval(() => history.push('/login'), 3000); // setInterval nos permite redirigir al usuario a la página de login después de 3 segundos
 
                 } else if (response.status === 404) {
                     NotificationManager.warning("No existe un usuario con ese email, o la respuesta a la pregunta de seguridad no es correcta", "Advertencia", 3000);
@@ -36,7 +48,7 @@ export default function ResetPassword() {
                 es exitosa o no. */
             })
             .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-            /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
+        /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
     const handleInput = e => {
@@ -44,7 +56,7 @@ export default function ResetPassword() {
         const value = e.target.value;
 
         setResetPassword(currentResetPassword => {
-            const newResetPassword = {...currentResetPassword};
+            const newResetPassword = { ...currentResetPassword };
             newResetPassword[field] = value;
             return newResetPassword;
         });
@@ -66,41 +78,38 @@ export default function ResetPassword() {
     }
 
     return (
-        <div className="wrapper">
-            <div id="resetPassword">
-                <NotificationContainer />
-                {/* Este componente lo añado para que salga una notificación de éxito o error al obtener una nueva contraseña. */}
+        <div id="resetPassword">
+            <NotificationContainer />
+            {/* Este componente lo añado para que salga una notificación de éxito o error al obtener una nueva contraseña. */}
 
-                <h1>Obtén una nueva contraseña</h1>
+            <h1>Obtén una nueva contraseña</h1>
 
-                <form onSubmit={resetDataPassword}>
+            <form onSubmit={resetDataPassword}>
 
-                    <div id="resetPasswordInputs">
-                        <div className="inputBlock">
-                            <label htmlFor="emailInput">Email</label>
+                <div className="form-section">
+                    <div className="form-group">
+                        <div className="control">
+                            <label htmlFor="email">Email</label>
                             <input type="email" id="email" placeholder="Introduce tu Email" onInput={handleInput} required></input>
                         </div>
 
-                        <div className="inputBlock">
-                            <label htmlFor="passwordInput">Nueva contraseña</label>
+                        <div className="control">
+                            <label htmlFor="password">Nueva contraseña</label>
                             <input type="password" id="password" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
 
-                        <div className="inputBlock">
-                            <label htmlFor="passwordInput">Confirma tu nueva contraseña</label>
+                        <div className="control">
+                            <label htmlFor="passwordCheck">Confirma tu nueva contraseña</label>
                             <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
-                        <div className="inputBlock">
+                        <div className="control">
                             <label htmlFor="securityQuestion">¿Cuál era el nombre de tu primer colegio?</label>
                             <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
                         </div>
                     </div>
-
-                    <input type="submit" value="Enviar"></input>
-
-                </form>
-            </div>
+                </div>
+                <button className="button" type="submit">Enviar</button>
+            </form>
         </div>
-
     )
 }

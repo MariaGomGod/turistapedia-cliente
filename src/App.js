@@ -12,12 +12,14 @@ function App() {
 
   const [coldColors, setColdColors] = useState(false);
   const [volume, setVolume] = useState(1);
+  const [authenticatedUser, setAuthenticatedUser] = useState({});
 
   return (
 
-    <div className={"App " + (coldColors ? "colorblind" : "")}> 
-      <GlobalContext.Provider value={{volume, setVolume}}>
-        <Header coldColors={coldColors} setColdColors={setColdColors} volume={volume} setVolume={setVolume} />
+    <div className={"App " + (coldColors ? "colorblind" : "")}>
+      <GlobalContext.Provider value={{ volume, setVolume, authenticatedUser, setAuthenticatedUser }}>
+        <Header coldColors={coldColors} setColdColors={setColdColors} volume={volume} setVolume={setVolume}
+          authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser} />
         <div id="main-content">
           <Router />
         </div>

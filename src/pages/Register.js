@@ -1,10 +1,13 @@
 import './Register.sass';
 import { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { useHistory } from "react-router-dom";
 
 export default function Register() {
 
     const [registerData, setRegisterData] = useState({});
+
+    const history = useHistory();
 
     const register = e => {
 
@@ -24,13 +27,14 @@ export default function Register() {
                     setRegisterData({}); // vaciamos el estado
                     form.reset();           // vaciamos el formulario
                     NotificationManager.success("Registro exitoso. Redirigiendo a la página de inicio de sesión...", "Éxito", 3000);
+                    setInterval(() => history.push('/login'), 3000); // setInterval nos permite redirigir al usuario a la página de login después de 3 segundos
 
                 } else if (response.status >= 400 && response.status < 500) {
                     response.json().then(data => {
                         if (data.message.includes("unique")) {
                             const email = document.getElementById("email");
                             email.setCustomValidity("Este email ya está en uso, utiliza uno diferente");
-                        } 
+                        }
                         NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 3000);
                     });
                 } else {
@@ -40,7 +44,7 @@ export default function Register() {
                 es exitosa o no. */
             })
             .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-            /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
+        /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
     const handleInput = e => {
@@ -48,13 +52,13 @@ export default function Register() {
         const value = e.target.value;
 
         if (field === "email") {
-            e.target.setCustomValidity(""); 
+            e.target.setCustomValidity("");
             // Llegado a este punto, el usuario ha modificado el input al que corresponde el mail. Borramos el mensaje de error si 
             // lo hubiera, asumiendo que va a intentarlo con otro diferente.
         }
 
         setRegisterData(currentRegisterData => {
-            const newRegisterData = {...currentRegisterData};
+            const newRegisterData = { ...currentRegisterData };
             newRegisterData[field] = value;
             return newRegisterData;
         });
@@ -76,41 +80,40 @@ export default function Register() {
     }
 
     return (
-        <div className="wrapper">
-            <div id="register">
-                <NotificationContainer />
-                {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo registro. */}
+        <div id="register">
+            <NotificationContainer />
+            {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo registro. */}
 
-                <h1>Regístrate en Turistapedia</h1>
+            <h1>Regístrate en Turistapedia</h1>
 
-                <form onSubmit={register}>
+            <form onSubmit={register}>
 
-                    <div id="registerInputs">
-                        <div className="inputBlock">
-                            <label htmlFor="emailInput">Email</label>
+                <div className="form-section">
+                    <div className="form-group">
+                        <div className="control">
+                            <label htmlFor="email">Email</label>
                             <input type="email" id="email" placeholder="Introduce tu Email" onInput={handleInput} required></input>
                         </div>
 
-                        <div className="inputBlock">
-                            <label htmlFor="passwordInput">Contraseña</label>
+                        <div className="control">
+                            <label htmlFor="password">Contraseña</label>
                             <input type="password" id="password" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
 
-                        <div className="inputBlock">
-                            <label htmlFor="passwordInput">Confirma tu contraseña</label>
+                        <div className="control">
+                            <label htmlFor="passwordCheck">Confirma tu contraseña</label>
                             <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
-                        <div className="inputBlock">
+                        <div className="control">
                             <label htmlFor="securityQuestion">¿Cuál era el nombre de tu primer colegio?</label>
                             <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
                         </div>
                     </div>
+                </div>
 
-                    <input type="submit" value="Enviar"></input>
+                <button className="button" type="submit">Enviar</button>
 
-                </form>
-            </div>
+            </form>
         </div>
-
     )
 }
