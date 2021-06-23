@@ -3,10 +3,13 @@ import 'react-notifications/lib/notifications.css';
 import './Pending.sass';
 import { useState, useEffect } from 'react';
 import { BASE_API_URL } from "../config/config";
+import { useHistory } from 'react-router-dom';
 
 export default function Pending() {
 
     const [pending, setPending] = useState([]);
+
+    const history = useHistory();
 
     useEffect(() => {
         fetch(`${BASE_API_URL}/poi/pending`, {
@@ -16,8 +19,18 @@ export default function Pending() {
                 // Las credenciales las obtenemos en el Login.js a través de "token".
             }
         })
-            .then(response => response.json())
-            .then(data => setPending(data));
+            .then(response => {
+                if (response.ok) {
+                    response.json()
+                        .then(data => setPending(data));
+                } else if (response.status === 401) {
+                    NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
+                    setInterval(() => history.push('/login'), 3000);
+                } else {
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                }
+            })
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
     }, []);
 
     const publish = e => {
@@ -38,8 +51,8 @@ export default function Pending() {
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() =>  NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-            /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+        /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
     const remove = e => {
@@ -60,13 +73,13 @@ export default function Pending() {
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() =>  NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-            /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+        /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
     return (
         <div id="pending">
-             <NotificationContainer />
+            <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo punto de interés. */}
 
             <h1 className="title">Puntos de interés pendientes de aprobar</h1>
@@ -80,7 +93,7 @@ export default function Pending() {
                     </tr>
                 </thead>
                 <tbody>
-                    {pending.map((element, index) => {
+                    {pending?.map((element, index) => {
                         return (
                             <tr key={index} className="pending">
                                 <td className="name">{element.name}</td>

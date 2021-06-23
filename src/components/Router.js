@@ -36,7 +36,15 @@ export default function Router() {
                             : <Redirect to="/login" />
                     }} />
 
-                    <Route exact path="/pending" render={() => {
+                    <Route exact path="/admin/pending" render={() => {
+                        const authenticatedUser = localStorage.getItem("user");
+
+                        return authenticatedUser ?
+                            JSON.parse(authenticatedUser).admin ? <Pending /> : <Redirect to="/error" />
+                            : <Redirect to="/login" />
+                    }} />
+
+                    <Route exact path="/admin/all" render={() => {
                         const authenticatedUser = localStorage.getItem("user");
 
                         return authenticatedUser ?
