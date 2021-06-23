@@ -11,8 +11,7 @@ del mapa. Con ello, evitamos que React vuelva a re-renderizar el componente si n
 export default memo(function Map ({ pointsOfInterest, center, setCenter }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyCNJkyAndouVZpDlbY6ns_il2PZVjenfns"
-        //googleMapsApiKey: "GOOGLE-MAPS-KEY"
+        googleMapsApiKey: "GOOGLE-MAPS-KEY"
     });
 
     const [map, setMap] = useState(null);
