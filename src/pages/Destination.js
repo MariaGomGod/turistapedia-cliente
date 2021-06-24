@@ -14,11 +14,14 @@ export default function Destination() {
     return (
         <>
             <form onSubmit={selectDestination}>
-                <div id="title"><h1>¿A&nbsp;dónde&nbsp;quieres&nbsp;ir?</h1></div>
-
-                <input required type="text" id="destinationInput" name="destinationInput" placeholder="Destino"></input>
-
-                <button className="button" type="submit">¡Vamos!</button>
+                <div className="wrapper">
+                    <div className="image"><div className="fondo"></div></div>
+                    <div id="title"><h1>¿A&nbsp;dónde&nbsp;quieres&nbsp;ir?</h1></div>
+                    <div className="destination">
+                        <input required type="text" id="destinationInput" name="destinationInput" placeholder="Destino"></input>
+                        <button className="button" type="submit">¡Vamos!</button>
+                    </div>
+                </div>
             </form>
         </>
     );
