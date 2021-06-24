@@ -1,8 +1,8 @@
-import './HamburgerMenu.sass';
+import './BurgerMenu.sass';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function HamburgerMenu() {
+export default function BurgerMenu() {
 
     const toggleVisible = () => {
         document.getElementById("myLinks").classList.toggle('active');
