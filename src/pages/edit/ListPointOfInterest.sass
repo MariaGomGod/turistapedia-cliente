@@ -1,0 +1,57 @@
+@import ../styles/_variables
+    
+#list
+    padding: 3vw 12vw 0
+
+    table
+        font-size: 1.2em
+        margin: 0 auto
+        padding: 1vw 2vw
+        margin-bottom: 1vw
+        text-align: justify
+        width: 50vw
+        border-spacing: 0
+    
+        tr
+            vertical-align: top
+            border-right: none
+    
+            th, td
+                padding: 1vw
+                border: 0.5px solid $tertiary
+    
+            th
+                color: $tertiary
+                font-weight: bold
+                font-size: 1.1em
+            td
+                border-top: 0
+    
+            th.name
+                width: 60%
+    
+            th.categories
+                width: 35%
+
+            td.categories
+                text-align: left
+    
+        :first-child
+            td:first-child, th:first-child
+                border-top-left-radius: 5px
+            td:last-child, th:last-child
+                border-top-right-radius: 5px
+    
+        :last-child
+            td:first-child, th:first-child
+                border-bottom-left-radius: 5px
+            td:last-child, th:last-child
+                border-bottom-right-radius: 5px
+    
+.colorblind
+    th
+        color: $colorblind-tertiary !important
+
+.colorblind #pending table tr
+    th, td
+        border-color: $colorblind-tertiary !important

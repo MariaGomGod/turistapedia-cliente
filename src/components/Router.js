@@ -13,7 +13,12 @@ export default function Router() {
 
     return (
         <div>
+            
             <BrowserRouter>
+                {/* <Header>
+
+                </Header> */}
+
                 <Switch>
 
                     <Route exact path="/login" render={() => {

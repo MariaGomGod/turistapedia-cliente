@@ -1,0 +1,71 @@
+@import ../../styles/_variables
+
+#edited-poi
+    padding: 3vw 12vw 0
+
+    form
+        margin: 0 auto
+
+        .form-section
+            font-size: 1.2em
+            text-align: left
+            width: 100%
+            padding: 1vw 2vw
+            border: 1px solid $tertiary
+            border-radius: 10px
+            margin-bottom: 1vw
+    
+            h3
+                margin: 1vw 0 0 0
+                color: $tertiary
+        
+            .form-group
+                margin: 1vw
+                padding: 0 1vw
+                clear: both
+
+                label
+                    display: inline-block
+                    float: left
+
+                input, textarea
+                    font-size: 14px
+
+                .control
+                    margin-top: 1vw
+                    clear: both
+    
+                .form-control  
+                    &[type=text], &[type=number]
+                        width: 100%
+                        margin-top: 0.5vw
+                        height: 40px
+        
+                textarea.form-control
+                    height: 200px
+                    width: 100%
+                    margin-top: 0.5vw
+                    padding: 5px
+                    border-radius: 5px
+                    border-color: #fff
+
+                    &:focus:valid
+                        border-color: blue
+        
+                &.checkbox
+                    .control
+                        margin: 0
+        
+                    input[type=checkbox]
+                        float: left
+        
+                    label
+                        float: none
+
+.colorblind #new-poi
+
+    h3
+        color: $colorblind-tertiary !important
+
+    .form-section
+        border-color: $colorblind-tertiary !important
