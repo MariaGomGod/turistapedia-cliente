@@ -3,26 +3,33 @@
 *
     box-sizing: border-box
 
-.fondo
-    background-image: url(../images/imagen_sevilla_opcion.jpg)
+.destination-wrapper
+    background-image: url(../images/fondo_sevilla.jpg)
     background-size: cover
     background-repeat: no-repeat
     background-position: center
-    height: 750px
+
+    #destination
+        margin: auto
+        font-size: 18px
+        background-color: white
+        width: min-content
+        padding: 5vw 2vw
+        min-height: 430px
+
+        #loginInputs
+            padding: 0 2vw
+            width: min-content
+            margin: 0 auto
+
+            .inputBlock
+                margin-bottom: 20px
+
+                label
+                    font-size: 18px
+                    margin-right: 5px
+                    float: left
 
 .colorblind
-    .fondo
-      background-image: url(../images/imagen_sevilla_cb.jpg) !important
-
-.wrapper
-    display: grid
-    grid-template: 1fr / 1fr 1fr
-    background-color: white
-    border: 1px solid lightgray
-    height: 100%
-
-.destination
-    margin-bottom: 20px
-    font-size: 18px
-    margin-right: 5px
-    
+    .destination-wrapper
+        background-image: url(../images/fondo_sevilla_cb.jpg) !important

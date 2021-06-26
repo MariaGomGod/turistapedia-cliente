@@ -1,14 +1,7 @@
 import { useState } from 'react';
-import MainInformation from "./MainInformation";
-import Coordinates from "./Coordinates";
-import Categories from "./Categories";
-import Accesibility from "./Accesibility";
-import Webs from "./Webs";
-import Photos from "./Photos";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import './Create.sass';
 import { BASE_API_URL } from "../../config/config";
+import PoiForm from '../../components/PoiForm';
 
 export default function Create() {
 
@@ -26,7 +19,10 @@ export default function Create() {
                 method: 'POST',
                 body: JSON.stringify(pointOfInterest),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    // Intento llamar a este endpoint con las credenciales del usuario.
+                    // Las credenciales las obtenemos en el Login.js a través de "token".
                 }
             }
         ).then(response => {
@@ -50,21 +46,11 @@ export default function Create() {
     }
 
     return (
-        <div id="new-poi">
+        <div className="form-wrapper">
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo punto de interés. */}
 
             <h1>Nuevo punto de interés</h1>
-            <form onSubmit={submit}>
-                <div className="form-section">
-                    <MainInformation setPointOfInterest={setPointOfInterest} />
-                    <Coordinates setPointOfInterest={setPointOfInterest} />
-                    <Categories setPointOfInterest={setPointOfInterest} />
-                    <Accesibility setPointOfInterest={setPointOfInterest} />
-                    <Webs setPointOfInterest={setPointOfInterest} />
-                    <Photos setPointOfInterest={setPointOfInterest} />
-                </div>
-                <button type="submit" className="button">Enviar</button>
-            </form>
+            <PoiForm onSubmit={submit} state={pointOfInterest} updateState={setPointOfInterest} />
         </div>);
 }

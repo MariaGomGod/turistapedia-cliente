@@ -1,9 +1,8 @@
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import './ListPointOfInterest.sass';
 import { useState, useEffect } from 'react';
-import { BASE_API_URL } from "../config/config";
+import { BASE_API_URL } from "../../config/config";
 import { useHistory } from 'react-router-dom';
+import './ListPointOfInterest.sass';
 
 export default function ListPointOfInterest() {
 
@@ -31,28 +30,11 @@ export default function ListPointOfInterest() {
                 }
             })
             .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-    }, []);
+    }, [history]);
 
-    const listed = e => {
+    const showDetails = e => {
         const id = e.target.id;
-        fetch(`${BASE_API_URL}/poi/${id}`, {
-            method: 'GET',
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    setList(currentList => currentList.filter(element => element._id !== id));
-                    NotificationManager.success("Puntos de interés listados con éxito", "Éxito", 3000);
-                } else {
-                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
-                }
-                /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
-                es exitosa o no. */
-            })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-        /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
+        history.push(`/admin/edit/${id}`);
     };
 
     return (
@@ -76,7 +58,7 @@ export default function ListPointOfInterest() {
                                 <td className="name">{element.name}</td>
                                 <td className="categories">{element.categories.join(", ")}</td>
                                 <td>
-                                    <button className="button" id={element._id} value="Aprobar" onClick={listed}>Editar</button>
+                                    <button className="button" id={element._id} value="Editar" onClick={showDetails}>Editar</button>
                                 </td>
                             </tr>
                         );

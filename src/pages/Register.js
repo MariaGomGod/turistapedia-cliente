@@ -1,7 +1,7 @@
-import './Register.sass';
 import { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
+import './Register.sass';
 
 export default function Register() {
 
@@ -80,7 +80,7 @@ export default function Register() {
     }
 
     return (
-        <div id="register">
+        <div id="register" className="form-wrapper">
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo registro. */}
 

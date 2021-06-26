@@ -1,9 +1,8 @@
-import 'react-notifications/lib/notifications.css';
-import './Login.sass';
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../App';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
+import './Login.sass';
 
 export default function Login() {
 
@@ -54,11 +53,11 @@ export default function Login() {
     };
 
     return (
-        <div className="wrapper">
+        <div className="login-wrapper">
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al iniciar sesión. */}
-            <div className="image"><div className="fondo"></div></div>
-            <div id="login"><h1>¡Empieza a turistear ya!</h1>
+            <div id="login">
+                <h1>¡Empieza&nbsp;a&nbsp;turistear&nbsp;ya!</h1>
 
                 <form onSubmit={login}>
 
@@ -72,10 +71,10 @@ export default function Login() {
                             <label for="passwordInput">Password</label>
                             <input required type="password" name="password" placeholder="********" onInput={handleInput}></input>
                         </div>
+                    </div>
 
-                        <div className="inputBlock">
-                            <input type="submit" value="Entrar" class="button"></input>
-                        </div>
+                    <div className="inputBlock">
+                        <input type="submit" value="Entrar" class="button"></input>
                     </div>
 
                     <ul id="account-links">
@@ -90,6 +89,5 @@ export default function Login() {
                 </form>
             </div>
         </div>
-
     )
 }

@@ -3,35 +3,43 @@
 *
     box-sizing: border-box
 
-// .fondo
-//     background-image: url(../images/imagen_sevilla_opcion.jpg)
-//     background-size: cover
-//     background-repeat: no-repeat
-//     background-position: center
-//     height: 750px
+.login-wrapper
+    background-image: url(../images/fondo_login.jpg)
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
 
-// .colorblind
-//     .fondo
-//       background-image: url(../images/imagen_sevilla_cb.jpg) !important
-//     .button
-//       background-color: $colorblind-primary !important
-//       color: $colorblind-secondary !important
+    #login
+        margin: 0 auto
+        display: block
+        padding: 2vw
+        width: min-content
+        background-color: white
+        min-height: 430px
 
-// .wrapper
-//     display: grid
-//     grid-template: 1fr / 1fr 1fr
-//     background-color: white
-//     border: 1px solid lightgray
-//     height: 100%
+        #loginInputs
+            padding: 0 2vw
+            width: min-content
+            margin: 0 auto
 
-#account-links
-    font-size: 18px
-    padding-left: 0
-    list-style: none
-    margin-top: 30px
-        
-.inputBlock
-    margin-bottom: 20px
-    label
-        font-size: 18px
-        margin-right: 5px
+            .inputBlock
+                margin-bottom: 20px
+
+                label
+                    font-size: 18px
+                    margin-right: 5px
+                    float: left
+
+        #account-links
+            font-size: 18px
+            padding-left: 0
+            list-style: none
+            margin-top: 30px
+
+.colorblind
+    .login-wrapper
+        background-image: url(../images/fondo_login_cb.jpg) !important
+
+        #login .button
+            background-color: $colorblind-primary !important
+            color: $colorblind-secondary !important

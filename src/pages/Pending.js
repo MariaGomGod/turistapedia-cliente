@@ -1,9 +1,8 @@
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import './Pending.sass';
 import { useState, useEffect } from 'react';
 import { BASE_API_URL } from "../config/config";
 import { useHistory } from 'react-router-dom';
+import './Pending.sass';
 
 export default function Pending() {
 
@@ -31,7 +30,7 @@ export default function Pending() {
                 }
             })
             .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
-    }, []);
+    }, [history]);
 
     const publish = e => {
         const id = e.target.id;
@@ -82,7 +81,7 @@ export default function Pending() {
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo punto de interés. */}
 
-            <h1 className="title">Puntos de interés pendientes de aprobar</h1>
+            <h1 className="title">Puntos de interés pendientes de aprobar / eliminar</h1>
             <table>
                 <thead>
                     <tr>

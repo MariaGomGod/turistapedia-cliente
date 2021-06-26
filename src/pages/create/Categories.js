@@ -1,4 +1,4 @@
-export default function Categories({ setPointOfInterest }) {
+export default function Categories({ pointOfInterest, setPointOfInterest }) {
 
     function updateCheckboxField(e, field) {
 
@@ -20,22 +20,31 @@ export default function Categories({ setPointOfInterest }) {
         });
     }
 
-    function updateCategories(e) {
-
-        updateCheckboxField(e, "categories");
-
+    function updateRequiredState() {
         const inputs = document.querySelectorAll('div#categories-checkbox input[type="checkbox"]');
-
+    
         let atLeastOneChecked = false;
-
+    
         for (let i = 0; i < inputs.length; i++) {
             if (inputs[i].checked) {
                 atLeastOneChecked = true;
                 break;
             }
         }
-
         inputs.forEach(element => element.required = !atLeastOneChecked);
+    }
+
+    function updateCategories(e) {
+
+        updateCheckboxField(e, "categories");
+
+        updateRequiredState();
+    }
+
+    function categoriesMissing() {
+        // Con esta función indicamos que si el array de categorías es nulo o está vacío. Al no haber ninguna categoría marcada, hacemos que todas
+        // sean obligatorias.
+        return pointOfInterest.categories == null || pointOfInterest.categories.length === 0;
     }
 
     return (
@@ -44,43 +53,45 @@ export default function Categories({ setPointOfInterest }) {
             <div id="categories-checkbox" className="form-group checkbox">
                 <div className="control">
                     <label htmlFor="category-1">Restauración</label>
-                    <input type="checkbox" id="category-1" value="restauración" onInput={updateCategories} required></input>
+                    {/* Para que en el formulario de la página de editar (Edit.js) se marquen todas las categorías que aplican al punto de interés elegido, en el atributo
+                    defaultChecked se indica que si la categoría está incluída en el array de categorías que viene del backend, aparezca marcada inicialmente, en este caso, restauración. */}
+                    <input type="checkbox" id="category-1" value="restauración" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('restauración')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-2">Bar</label>
-                    <input type="checkbox" id="category-2" value="bar" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-2" value="bar" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('bar')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-3">Restaurante</label>
-                    <input type="checkbox" id="category-3" value="restaurante" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-3" value="restaurante" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('restaurante')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-4">Alojamiento</label>
-                    <input type="checkbox" id="category-4" value="alojamiento" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-4" value="alojamiento" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('alojamiento')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-5">Hotel</label>
-                    <input type="checkbox" id="category-5" value="hotel" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-5" value="hotel" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('hotel')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-6">Hostal</label>
-                    <input type="checkbox" id="category-6" value="hostal" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-6" value="hostal" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('hostal')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-7">Apartamento</label>
-                    <input type="checkbox" id="category-7" value="apartamento" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-7" value="apartamento" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('apartamento')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-8">Monumento</label>
-                    <input type="checkbox" id="category-8" value="monumento" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-8" value="monumento" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('monumento')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-9">Puente</label>
-                    <input type="checkbox" id="category-9" value="puente" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-9" value="puente" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('puente')} required={categoriesMissing()}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="category-10">Plaza</label>
-                    <input type="checkbox" id="category-10" value="plaza" onInput={updateCategories} required></input>
+                    <input type="checkbox" id="category-10" value="plaza" onInput={updateCategories} defaultChecked={pointOfInterest.categories?.includes('plaza')} required={categoriesMissing()}></input>
                 </div>
             </div>
         </>

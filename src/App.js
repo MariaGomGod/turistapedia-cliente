@@ -1,3 +1,4 @@
+import 'react-notifications/lib/notifications.css';
 import './App.sass';
 
 import { useState, createContext } from "react";

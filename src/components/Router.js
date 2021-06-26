@@ -8,6 +8,8 @@ import StreetMap from "../pages/StreetMap";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
 import ResetPassword from "../pages/ResetPassword";
+import ListPointOfInterest from "../pages/edit/ListPointOfInterest";
+import EditPointOfInterest from "../pages/edit/EditPointOfInterest";
 
 export default function Router() {
 
@@ -53,7 +55,15 @@ export default function Router() {
                         const authenticatedUser = localStorage.getItem("user");
 
                         return authenticatedUser ?
-                            JSON.parse(authenticatedUser).admin ? <Pending /> : <Redirect to="/error" />
+                            JSON.parse(authenticatedUser).admin ? <ListPointOfInterest /> : <Redirect to="/error" />
+                            : <Redirect to="/login" />
+                    }} />
+
+                    <Route exact path="/admin/edit/:id" render={() => {
+                        const authenticatedUser = localStorage.getItem("user");
+
+                        return authenticatedUser ?
+                            JSON.parse(authenticatedUser).admin ? <EditPointOfInterest /> : <Redirect to="/error" />
                             : <Redirect to="/login" />
                     }} />
 
