@@ -28,10 +28,10 @@ export default function EditPointOfInterest() {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setInterval(() => history.push('/login'), 3000);
                 } else {
-                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
     }, [history, id]);
 
     const submit = e => {
@@ -52,18 +52,18 @@ export default function EditPointOfInterest() {
             }
         ).then(response => {
             if (response.ok) {
-                NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 3000);
+                NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 1000);
             } else {
                     if (response.status >= 400 && response.status < 500) {
-                        NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 3000);
+                        NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                     } else {
-                        NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                        NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                     }
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     }
 

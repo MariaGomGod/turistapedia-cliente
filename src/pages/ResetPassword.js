@@ -1,4 +1,3 @@
-import './ResetPassword.sass';
 import { useState, useContext } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
@@ -38,16 +37,16 @@ export default function ResetPassword() {
                     setInterval(() => history.push('/login'), 3000); // setInterval nos permite redirigir al usuario a la página de login después de 3 segundos
 
                 } else if (response.status === 404) {
-                    NotificationManager.warning("No existe un usuario con ese email, o la respuesta a la pregunta de seguridad no es correcta", "Advertencia", 3000);
+                    NotificationManager.warning("No existe un usuario con ese email, o la respuesta a la pregunta de seguridad no es correcta", "Advertencia", 1000);
                 } else if (response.status >= 400 && response.status < 500) {
-                    NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 3000);
+                    NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                 } else {
-                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
@@ -78,7 +77,7 @@ export default function ResetPassword() {
     }
 
     return (
-        <div id="resetPassword">
+        <div id="resetPassword" className="form-wrapper account-form">
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al obtener una nueva contraseña. */}
 

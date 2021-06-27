@@ -26,15 +26,15 @@
                 margin-bottom: 20px
 
                 label
-                    font-size: 18px
                     margin-right: 5px
                     float: left
 
         #account-links
             font-size: 18px
+            font-weight: bold
             padding-left: 0
             list-style: none
-            margin-top: 30px
+            margin-top: 40px
 
 .colorblind
     .login-wrapper
@@ -43,3 +43,17 @@
         #login .button
             background-color: $colorblind-primary !important
             color: $colorblind-secondary !important
+
+@media all and ( max-width: 480px )
+  body
+
+    h1
+      margin: 6vw 0
+
+    .login-wrapper #login
+        min-height: 350px
+
+        #account-links
+          font-size: 14px
+
+ 

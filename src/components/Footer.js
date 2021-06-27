@@ -13,7 +13,7 @@ export default function Footer() {
                             <a className="nav-link" href="#">CONDICIONES&nbsp;DE&nbsp;USO</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">DECLARACIÓN&nbsp;DE&nbsp;PRIVACIDAD&nbsp;Y&nbsp;COOKIES</a>
+                            <a className="nav-link" href="#">DECLARACIÓN&nbsp;DE&nbsp;PRIVACIDAD</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">ACEPTACIÓN&nbsp;COOKIES</a>

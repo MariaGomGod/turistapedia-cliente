@@ -33,12 +33,12 @@ export default function Login() {
                     });
             } else {
                 if (response.status === 401) {
-                    NotificationManager.warning("Email o contraseña erróneos", "Advertencia", 3000);
+                    NotificationManager.warning("Email o contraseña erróneos", "Advertencia", 1000);
                 } else {
-                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             }
-        }).catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+        }).catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */;
     };
 
@@ -52,6 +52,11 @@ export default function Login() {
         });
     };
 
+    const navigate = e => {
+        e.preventDefault();
+        history.push(e.target.pathname);
+    }
+
     return (
         <div className="login-wrapper">
             <NotificationContainer />
@@ -63,28 +68,28 @@ export default function Login() {
 
                     <div id="loginInputs">
                         <div className="inputBlock">
-                            <label for="emailInput">Email</label>
+                            <label htmlFor="emailInput">Email</label>
                             <input required type="email" name="email" placeholder="Introduce tu Email" onInput={handleInput}></input>
                         </div>
 
                         <div className="inputBlock">
-                            <label for="passwordInput">Password</label>
+                            <label htmlFor="passwordInput">Password</label>
                             <input required type="password" name="password" placeholder="********" onInput={handleInput}></input>
                         </div>
                     </div>
 
                     <div className="inputBlock">
-                        <input type="submit" value="Entrar" class="button"></input>
+                        <input type="submit" value="Entrar" className="button"></input>
                     </div>
 
                     <ul id="account-links">
 
-                        <li><a href="#" alt="contraseña olvidada">
-                            <strong>¿Olvidaste la contraseña?</strong>
-                            <span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;restaurarla</span>
-                        </a>
+                        <li>
+                            <a href="/reset-password" onClick={navigate} alt="contraseña olvidada">¿Olvidaste&nbsp;la&nbsp;contraseña?<span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;restaurarla</span></a>
                         </li>
-                        <li><a href="#" alt="crear cuenta"><span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;</span><strong>Crear una cuenta</strong></a></li>
+                        <li>
+                            <a href="/register" onClick={navigate} alt="crear cuenta"><span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;</span>Crear&nbsp;una&nbsp;cuenta</a>
+                        </li>
                     </ul>
                 </form>
             </div>

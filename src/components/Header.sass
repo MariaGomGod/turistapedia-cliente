@@ -9,6 +9,9 @@
         padding: 1vw 2vw 1vw 2vw
         align-items: center
 
+        #logo
+            width: 10vw
+
     #second-row
         background-color: $senary
         color: $senary
@@ -27,10 +30,43 @@
         height: 32px
 
 .colorblind #header
-    #second-row 
+    #second-row
         background-color: $colorblind-senary !important
         color: $colorblind-senary !important
 
-    #third-row 
+    #third-row
         background-color: $colorblind-quinary !important
         color: $colorblind-senary !important
+
+@media all and ( max-width: 768px )
+    #header #third-row span
+        &:first-of-type
+            margin-right: 0 !important
+
+@media all and ( max-width: 480px )
+    #header
+
+        .button
+            width: 95px
+
+        #first-row
+            height: 85px
+
+            #logo
+                width: 16vw
+
+        #second-row, #third-row
+            padding: 4px
+            height: 40px
+
+        #greeting
+            font-size: 12px
+        
+        #second-row span.button
+            margin-right: 0
+       
+        .topnav
+            margin: -4px
+
+            a.icon
+                height: 40px

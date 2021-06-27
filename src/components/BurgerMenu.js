@@ -1,6 +1,7 @@
 import './BurgerMenu.sass';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHistory } from 'react-router-dom';
 
 export default function BurgerMenu() {
 
@@ -8,18 +9,44 @@ export default function BurgerMenu() {
         document.getElementById("myLinks").classList.toggle('active');
     };
 
+    const navigate = e => {
+        e.preventDefault();
+        toggleVisible();
+        history.push(e.target.pathname);
+    }
+
+    const history = useHistory();
+
     return (
         <div className="topnav">
-            <a href="#" className="icon" onClick={toggleVisible}>
+            <a href="#" className="icon" onClick={toggleVisible} onMouseEnter={toggleVisible}>
                 <FontAwesomeIcon icon={faBars} />
             </a>
-            <div id="myLinks">
-                <a href="/login"><span className="sr-only">Haz click aquí para </span>Iniciar&nbsp;sesión</a>
-                <a href="/register"><span className="sr-only">Haz click aquí para </span>Crear&nbsp;cuenta</a>
-                <a href="/reset-password"><span className="sr-only">Haz click aquí para </span>Restablecer&nbsp;contraseña</a>
-                <a href="/destination"><span className="sr-only">Haz click aquí para </span>Elegir&nbsp;destino</a>
-                <a href="/create"><span className="sr-only">Haz click aquí para </span>Crear&nbsp;punto&nbsp;de&nbsp;interés</a>
-                <a href="/admin/all"><span className="sr-only">Haz click aquí para </span>Ver&nbsp;todos&nbsp;los&nbsp;puntos&nbsp;de&nbsp;interés</a>
+            <div id="myLinks" onMouseLeave={toggleVisible}>
+                {
+                    localStorage.getItem("user") ?
+                        <></> :
+                        <>
+                            <a href="/login" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Iniciar&nbsp;sesión</a>
+                            <a href="/register" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Crear&nbsp;cuenta</a>
+                        </>
+                }
+                <a href="/reset-password" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Restablecer&nbsp;contraseña</a>
+                <a href="/destination" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Elegir&nbsp;destino</a>
+                {
+                    localStorage.getItem("user") ?
+                        <>
+                            <a href="/create" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Crear&nbsp;punto&nbsp;de&nbsp;interés</a>
+                        </> :
+                        <></>
+                }
+                {
+                    localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).admin ?
+                        <>
+                            <a href="/admin/all" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Ver&nbsp;todos&nbsp;los&nbsp;puntos&nbsp;de&nbsp;interés</a>
+                        </> :
+                        <></>
+                }
             </div>
         </div>
     )

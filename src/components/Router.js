@@ -9,29 +9,27 @@ import Error from "../pages/Error";
 import ResetPassword from "../pages/ResetPassword";
 import ListPointOfInterest from "../pages/edit/ListPointOfInterest";
 import EditPointOfInterest from "../pages/edit/EditPointOfInterest";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Router() {
 
     return (
-        <div>
-            
-            <BrowserRouter>
-                {/* <Header>
-
-                </Header> */}
-
+        <BrowserRouter>
+            <Header />
+            <div id="main-content">
                 <Switch>
 
                     <Route exact path="/login" render={() => {
                         return localStorage.getItem("user")
-                            ?  <Redirect to="/" />
-                            :  <Login />
+                            ? <Redirect to="/" />
+                            : <Login />
                     }} />
 
                     <Route exact path="/register" render={() => {
                         return localStorage.getItem("user")
-                        ?  <Redirect to="/" />
-                        :  <Register />
+                            ? <Redirect to="/" />
+                            : <Register />
                     }} />
 
                     <Route exact path="/destination" component={Destination} />
@@ -67,7 +65,8 @@ export default function Router() {
 
                     <Route component={Error} />
                 </Switch>
-            </BrowserRouter>
-        </div>
+            </div>
+            <Footer />
+        </BrowserRouter>
     )
 }

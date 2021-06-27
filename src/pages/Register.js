@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
-import './Register.sass';
 
 export default function Register() {
 
@@ -35,15 +34,15 @@ export default function Register() {
                             const email = document.getElementById("email");
                             email.setCustomValidity("Este email ya está en uso, utiliza uno diferente");
                         }
-                        NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 3000);
+                        NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                     });
                 } else {
-                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000);
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 3000));
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
@@ -80,7 +79,7 @@ export default function Register() {
     }
 
     return (
-        <div id="register" className="form-wrapper">
+        <div id="register" className="form-wrapper account-form">
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo registro. */}
 
@@ -101,11 +100,11 @@ export default function Register() {
                         </div>
 
                         <div className="control">
-                            <label htmlFor="passwordCheck">Confirma tu contraseña</label>
+                            <label htmlFor="passwordCheck">Confirma&nbsp;tu&nbsp;contraseña</label>
                             <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
                         <div className="control">
-                            <label htmlFor="securityQuestion">¿Cuál era el nombre de tu primer colegio?</label>
+                            <label htmlFor="securityQuestion">¿Cuál&nbsp;era&nbsp;el&nbsp;nombre&nbsp;de&nbsp;tu&nbsp;primer&nbsp;colegio?</label>
                             <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
                         </div>
                     </div>
