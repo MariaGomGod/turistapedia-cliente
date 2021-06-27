@@ -13,9 +13,9 @@ export default function LogOut({ authenticatedUser, setAuthenticatedUser }) {
     };
 
     return (
-        <div>
+        <>
             <span className="button logout" onClick={logOut}>Cerrar&nbsp;sesión</span>
             <span id="greeting">¡Hola, {authenticatedUser.email}!</span>
-        </div>
+        </>
     );
 }

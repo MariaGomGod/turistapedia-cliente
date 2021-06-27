@@ -121,7 +121,7 @@ export default function ListPointOfInterest() {
                                 <td className="action">
                                     <button className="button" id={element._id} value="Editar" onClick={showDetails}>Editar</button>
                                 </td>
-                                <td className="action">
+                                <td className="action publish">
                                     {
                                         element.active ?
                                             <button className="button" id={element._id} value="Despublicar" onClick={e => publishOrUnpublish(e, false)}>Despublicar</button> :

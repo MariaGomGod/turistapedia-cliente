@@ -65,7 +65,7 @@ h1
     opacity: 1
 
 .form-wrapper
-    padding: 3vw 12vw 0
+    padding: 3vw 3vw 0 3vw
 
     form
         margin: 0 auto
@@ -147,8 +147,8 @@ h1
   h3
     color: $colorblind-tertiary !important
 
-    .form-section
-      border-color: $colorblind-tertiary !important
+  form .form-section
+    border-color: $colorblind-tertiary !important
 
 .colorblind
   .button
@@ -174,11 +174,27 @@ h1
 label
   font-size: 18px
 
-@media all and ( max-width: 768px )
-  body
-    font-size: 85%
+@media all and ( max-width: 1024px )
+  h1
+    font-size: 3.8vw
 
-@media all and ( max-width: 480px )
+  .account-form form .form-section .form-group .control label
+    margin: 1vw 0
+
+  .form-wrapper form .form-section h3
+    margin-top: 2vw
+
+@media all and ( max-width: 640px )
+  body .button
+    font-size: 14px
+    width: 135px
+
+@media all and ( max-width: 640px )
+  body .button
+    font-size: 12px
+    width: 110px
+
+@media all and ( max-width: 520px )
   body
 
     .notification-container
@@ -187,31 +203,14 @@ label
 
       .notification
         margin-top: 0
-        height: 85px
+        height: 70px
 
     .button
       font-size: 10px
-      width: min-content
-
-    label
-      font-size: 12px
-
-    h1
-      font-size: 1.5em
+      width: 95px
 
     input[type="text"], input[type="password"], input[type="email"]
       width: 50vw
-
-    footer
-      #navbar
-        ul
-          padding-left: 0
-
-          li a
-            font-size: 65%
-
-        #copyright
-          display: block
 
     .form-wrapper form .form-section
       margin-bottom: 4vw
@@ -220,14 +219,15 @@ label
         h3
           margin-top: 4vw
 
-        label
-          margin: 1vw 0
-
     .account-form form .form-section .form-group
-        padding: 4vw
-
         .control
           margin-bottom: 2vw
 
           input, textarea
-            width: 60vw !important
+            width: 70vw !important
+
+@media all and ( max-width: 480px )
+  body
+
+    label
+      font-size: 14px

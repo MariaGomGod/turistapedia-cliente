@@ -44,16 +44,21 @@
             background-color: $colorblind-primary !important
             color: $colorblind-secondary !important
 
-@media all and ( max-width: 480px )
-  body
-
-    h1
-      margin: 6vw 0
-
+@media all and ( max-width: 1024px )
     .login-wrapper #login
         min-height: 350px
+        
+        #account-links
+            font-size: 1.7vw
+
+@media all and ( max-width: 840px )
+    .login-wrapper #login #account-links
+        font-size: 14px
+
+@media all and ( max-width: 480px )
+    .login-wrapper #login
+        h1
+            margin: 2vw 0
 
         #account-links
-          font-size: 14px
-
- 
+             font-size: 12px

@@ -1,8 +1,8 @@
 @import ../styles/_variables
 
 #filters
-    width: 30%
-    padding: 1vw 7vw
+    width: max-content
+    padding: 1vw 3vw
     text-align: left
     float: left
 
@@ -22,6 +22,7 @@
 
             .filter
                 margin-bottom: 2vw
+                width: max-content
 
             :last-child.filter
                 margin-bottom: 0
@@ -32,3 +33,42 @@
 
     .border-section
         border-color: $colorblind-tertiary !important
+
+@media all and ( max-width: 800px )
+    #filters .border-section #filter-wrapper
+        h3, label
+            font-size: 95%
+
+@media all and ( max-width: 699px )
+    #filters
+        width: min-content
+        padding: 3vw
+        float: none
+        margin: 0 auto
+    
+        .border-section
+            padding: 1vw
+    
+            #filter-wrapper
+                display: grid
+                grid-template: 1fr / 1fr 1fr
+                width: max-content
+    
+                .filter
+                    margin-bottom: 0
+
+                    &:last-child
+                        margin-left: 4vw
+
+                    label
+                        font-size: 14px
+
+@media all and ( max-width: 480px )
+    #filters .border-section #filter-wrapper
+        h3, label
+            font-size: 85%
+
+@media all and ( max-width: 360px )
+    #filters .border-section #filter-wrapper .filter
+        h3, label
+            font-size: 80%

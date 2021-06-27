@@ -1,12 +1,11 @@
 @import ../../styles/_variables
 
 #list
-    padding: 3vw 9vw 0
+    padding: 3vw 3vw 0 3vw
 
     table
         margin: 0 auto
-        padding: 1vw 2vw
-        margin-bottom: 1vw
+        padding: 1vw 2vw 0
         text-align: left
         width: 50vw
         border-spacing: 0
@@ -25,6 +24,9 @@
                 font-weight: bold
             td
                 border-top: 0
+        
+                .button
+                    width: min-content
 
             th.name
                 width: 60%
@@ -57,17 +59,24 @@
         border-color: $colorblind-tertiary !important
 
 @media all and ( max-width: 768px )
-  body #list
-    padding: 3vw
-
-    table
-        th.categories, td.categories
-            display: none
+  body #list table
+    th.categories, td.categories
+        display: none
 
 @media all and ( max-width: 680px )
   body #list table
     font-size: 95%
+    
+    td.publish .button
+        width: 105px
 
 @media all and ( max-width: 480px )
   body #list table
     font-size: 85%
+    
+    td.publish .button
+        width: 70px
+
+@media all and ( max-width: 420px )
+  body #list table
+    font-size: 75%

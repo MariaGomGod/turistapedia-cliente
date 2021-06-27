@@ -7,19 +7,24 @@
     position: relative
     float: left
 
-    #myLinks, a.icon
+    #myLinks, button.icon
         background: #414141
 
-    a
+    a, button.icon
         color: $senary
         
-    a.icon
+    button.icon
         display: block
         line-height: 36px
         height: 48px
         font-size: 36px
         padding: 0.4vw 1vw
         width: min-content
+        border: none
+        outline: none
+
+        &::-moz-focus-inner
+            border: 0
 
     #myLinks
         padding: 0.5vw 1vw 1vw
@@ -29,8 +34,28 @@
         a
             display: block
             padding: 0.5vw
-            font-size: 1em
+            font-size: 1.4em
             font-weight: bold
 
         &.active
             display: block
+
+@media all and ( max-width: 1600px )
+    .topnav #myLinks a
+        font-size: 22px
+
+@media all and ( max-width: 1280px )
+    .topnav #myLinks a
+        font-size: 21px
+
+@media all and ( max-width: 1024px )
+    .topnav #myLinks a
+        font-size: 2.1vw
+
+@media all and ( max-width: 680px )
+    .topnav #myLinks a
+        font-size: 14px
+
+@media all and ( max-width: 520px )
+    .topnav button.icon
+        height: 40px

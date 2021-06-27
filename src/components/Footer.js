@@ -7,16 +7,16 @@ export default function Footer() {
                 <nav id="navbar">
                     <ul>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">ACERCA&nbsp;DE</a>
+                            <a className="nav-link" href="/about">ACERCA&nbsp;DE</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">CONDICIONES&nbsp;DE&nbsp;USO</a>
+                            <a className="nav-link" href="/terms-and-conditions">CONDICIONES&nbsp;DE&nbsp;USO</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">DECLARACIÓN&nbsp;DE&nbsp;PRIVACIDAD</a>
+                            <a className="nav-link" href="/privacy">DECLARACIÓN&nbsp;DE&nbsp;PRIVACIDAD</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">ACEPTACIÓN&nbsp;COOKIES</a>
+                            <a className="nav-link" href="/cookies">ACEPTACIÓN&nbsp;COOKIES</a>
                         </li>
                     </ul>
                     <p id="copyright" className="copyright">&copy;&nbsp;Copyright&nbsp;2021&nbsp;Turistapedia</p>

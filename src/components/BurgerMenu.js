@@ -19,9 +19,9 @@ export default function BurgerMenu() {
 
     return (
         <div className="topnav">
-            <a href="#" className="icon" onClick={toggleVisible} onMouseEnter={toggleVisible}>
+            <button className="icon" onClick={toggleVisible} onMouseEnter={toggleVisible}>
                 <FontAwesomeIcon icon={faBars} />
-            </a>
+            </button>
             <div id="myLinks" onMouseLeave={toggleVisible}>
                 {
                     localStorage.getItem("user") ?

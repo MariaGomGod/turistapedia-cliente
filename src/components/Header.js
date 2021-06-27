@@ -31,7 +31,7 @@ export default function Header() {
             <div id="header">
                 <div id="first-row">
                     <a href="/" onClick={navigate}>
-                        <img id="logo" src={coldColors ? logoCb : logo} alt="turistapedia" />
+                        <img id="logo" src={coldColors ? logoCb : logo} onClick={() => history.push('/')} alt="turistapedia" />
                     </a>
                     <h1>La&nbsp;web&nbsp;del&nbsp;turista</h1>
                 </div>
