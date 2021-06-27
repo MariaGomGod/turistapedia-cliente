@@ -2,7 +2,6 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import Login from "../pages/Login";
 import Destination from "../pages/Destination";
-import Pending from "../pages/Pending";
 import Create from "../pages/create/Create";
 import StreetMap from "../pages/StreetMap";
 import Register from "../pages/Register";
@@ -40,14 +39,6 @@ export default function Router() {
                     <Route exact path="/create" render={() => {
                         return localStorage.getItem("user")
                             ? <Create />
-                            : <Redirect to="/login" />
-                    }} />
-
-                    <Route exact path="/admin/pending" render={() => {
-                        const authenticatedUser = localStorage.getItem("user");
-
-                        return authenticatedUser ?
-                            JSON.parse(authenticatedUser).admin ? <Pending /> : <Redirect to="/error" />
                             : <Redirect to="/login" />
                     }} />
 
