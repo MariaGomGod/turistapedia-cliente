@@ -1,16 +1,10 @@
-import { useHistory } from 'react-router-dom';
 import './Logout.sass';
+import { useContext } from 'react';
+import { GlobalContext } from '../App';
 
-export default function LogOut({ authenticatedUser, setAuthenticatedUser }) {
+export default function LogOut({ authenticatedUser }) {
 
-    const history = useHistory();
-
-    const logOut = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setAuthenticatedUser({});
-        history.push('/');
-    };
+    const { logOut } = useContext(GlobalContext);
 
     return (
         <>

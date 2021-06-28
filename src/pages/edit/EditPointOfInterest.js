@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { BASE_API_URL } from "../../config/config";
 import PoiForm from '../../components/PoiForm';
 import { useHistory, useParams } from 'react-router-dom';
+import { GlobalContext } from '../../App';
 
 export default function EditPointOfInterest() {
 
@@ -11,6 +12,8 @@ export default function EditPointOfInterest() {
     const { id } = useParams();
 
     const history = useHistory();
+
+    const { logOut } = useContext(GlobalContext);
 
     useEffect(() => {
         fetch(`${BASE_API_URL}/poi/${id}`, {
@@ -26,13 +29,13 @@ export default function EditPointOfInterest() {
                         .then(data => setEdit(data));
                 } else if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
-                    setInterval(() => history.push('/login'), 3000);
+                    setTimeout(logOut, 3000);
                 } else {
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             })
             .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
-    }, [history, id]);
+    }, [history, id, logOut]);
 
     const submit = e => {
 
@@ -54,7 +57,10 @@ export default function EditPointOfInterest() {
             if (response.ok) {
                 NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 1000);
             } else {
-                    if (response.status >= 400 && response.status < 500) {
+                    if (response.status === 401) {
+                        NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
+                        setTimeout(logOut, 3000);
+                    } else if (response.status >= 400 && response.status < 500) {
                         NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                     } else {
                         NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);

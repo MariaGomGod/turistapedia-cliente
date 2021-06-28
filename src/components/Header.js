@@ -49,7 +49,7 @@ export default function Header() {
                     {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 
                     con estilos sass (Le aplico la clase colorblind al div con clase App en App.js), y uso un logo distinto en la cabecera (logoCb) */}
 
-                    <span className="button" onClick={() => setVolume(currentVolume => currentVolume ? 0 : 1)}>{volume ? "Des" : "A"}ctivar&nbsp;sonido</span>
+                    <span className="button" onClick={() => setVolume(currentVolume => currentVolume ? 0 : 1)}>{volume ? "Desa" : "A"}ctivar&nbsp;sonido</span>
 
                     {/* El botón volumen aparece el último en el HTML pero en el componente Header aparece a la izquierda del botón de cambio de color. Esto es así porque
                     ambos botones flotan a la derecha. El primer botón flotará justo en el borde derecho de la página, y el de volumen también flotará a la derecha pero

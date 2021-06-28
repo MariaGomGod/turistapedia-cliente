@@ -34,7 +34,7 @@ export default function ResetPassword() {
                     localStorage.removeItem("user");
                     setAuthenticatedUser({});
                     NotificationManager.success("Nueva contraseña creada exitosamente. Redirigiendo a la página de inicio de sesión...", "Éxito", 3000);
-                    setInterval(() => history.push('/login'), 3000); // setInterval nos permite redirigir al usuario a la página de login después de 3 segundos
+                    setTimeout(() => history.push('/login'), 3000); // setTimeout nos permite redirigir al usuario a la página de login después de 3 segundos
 
                 } else if (response.status === 404) {
                     NotificationManager.warning("No existe un usuario con ese email, o la respuesta a la pregunta de seguridad no es correcta", "Advertencia", 1000);

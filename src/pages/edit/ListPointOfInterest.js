@@ -1,14 +1,17 @@
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BASE_API_URL } from "../../config/config";
 import { useHistory } from 'react-router-dom';
 import './ListPointOfInterest.sass';
+import { GlobalContext } from '../../App';
 
 export default function ListPointOfInterest() {
 
     const [list, setList] = useState([]);
 
     const history = useHistory();
+
+    const { logOut } = useContext(GlobalContext);
 
     useEffect(() => {
         fetch(`${BASE_API_URL}/poi/all`, {
@@ -24,13 +27,13 @@ export default function ListPointOfInterest() {
                         .then(data => setList(data));
                 } else if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
-                    setInterval(() => history.push('/login'), 3000);
+                    setTimeout(logOut, 3000);
                 } else {
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             })
             .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
-    }, [history]);
+    }, [history, logOut]);
 
     const showDetails = e => {
         const id = e.target.id;
@@ -64,6 +67,9 @@ export default function ListPointOfInterest() {
                         })
                     );
                     NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 1000);
+                } else if (response.status === 401) {
+                    NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
+                    setTimeout(logOut, 3000);
                 } else {
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
@@ -86,6 +92,9 @@ export default function ListPointOfInterest() {
                 if (response.ok) {
                     setList(currentList => currentList.filter(element => element._id !== id));
                     NotificationManager.success("Punto de interés eliminado con éxito", "Eliminado", 1000);
+                } else if (response.status === 401) {
+                    NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
+                    setTimeout(logOut, 3000);
                 } else {
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }

@@ -54,7 +54,7 @@ export default function Login() {
 
     const navigate = e => {
         e.preventDefault();
-        history.push(e.target.pathname);
+        history.push(e.target.pathname); // pathname muestra el nombre de la ruta de la URL actual
     }
 
     return (

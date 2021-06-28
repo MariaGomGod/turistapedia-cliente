@@ -26,7 +26,7 @@ export default function Register() {
                     setRegisterData({}); // vaciamos el estado
                     form.reset();           // vaciamos el formulario
                     NotificationManager.success("Registro exitoso. Redirigiendo a la página de inicio de sesión...", "Éxito", 3000);
-                    setInterval(() => history.push('/login'), 3000); // setInterval nos permite redirigir al usuario a la página de login después de 3 segundos
+                    setTimeout(() => history.push('/login'), 3000); // setTimeout nos permite redirigir al usuario a la página de login después de 3 segundos
 
                 } else if (response.status >= 400 && response.status < 500) {
                     response.json().then(data => {

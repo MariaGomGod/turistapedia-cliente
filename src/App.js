@@ -13,10 +13,16 @@ function App() {
   const [volume, setVolume] = useState(1);
   const [authenticatedUser, setAuthenticatedUser] = useState({});
 
+  const logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setAuthenticatedUser({});
+  };
+
   return (
 
     <div className={"App " + (coldColors ? "colorblind" : "")}>
-      <GlobalContext.Provider value={{ coldColors, setColdColors, volume, setVolume, authenticatedUser, setAuthenticatedUser }}>
+      <GlobalContext.Provider value={{ coldColors, setColdColors, volume, setVolume, authenticatedUser, setAuthenticatedUser, logOut }}>
         <Router />
       </GlobalContext.Provider>
     </div>
