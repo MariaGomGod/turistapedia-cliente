@@ -21,42 +21,46 @@ export default function Router() {
                 <Switch>
 
                     <Route exact path="/login" render={() => {
-                        return localStorage.getItem("user")
-                            ? <Redirect to="/" />
-                            : <Login />
+                        return localStorage.getItem("user") ?
+                            <Redirect to="/" /> :
+                            <Login />;
                     }} />
 
                     <Route exact path="/register" render={() => {
-                        return localStorage.getItem("user")
-                            ? <Redirect to="/" />
-                            : <Register />
+                        return localStorage.getItem("user") ?
+                            <Redirect to="/" /> :
+                            <Register />;
                     }} />
 
                     <Route exact path="/destination" component={Destination} />
 
                     <Route exact path="/create" render={() => {
-                        return localStorage.getItem("user")
-                            ? <Create />
-                            : <Redirect to="/login" />
+                        return localStorage.getItem("user") ?
+                            <Create /> :
+                            <Redirect to="/login" />;
                     }} />
 
                     <Route exact path="/admin/all" render={() => {
                         const authenticatedUser = localStorage.getItem("user");
 
                         return authenticatedUser ?
-                            JSON.parse(authenticatedUser).admin ? <ListPointOfInterest /> : <Redirect to="/error" />
-                            : <Redirect to="/login" />
+                            JSON.parse(authenticatedUser).admin ? <ListPointOfInterest /> : <Redirect to="/error" /> :
+                            <Redirect to="/login" />;
                     }} />
 
                     <Route exact path="/admin/edit/:id" render={() => {
                         const authenticatedUser = localStorage.getItem("user");
 
                         return authenticatedUser ?
-                            JSON.parse(authenticatedUser).admin ? <EditPointOfInterest /> : <Redirect to="/error" />
-                            : <Redirect to="/login" />
+                            JSON.parse(authenticatedUser).admin ? <EditPointOfInterest /> : <Redirect to="/error" /> :
+                            <Redirect to="/login" />;
                     }} />
 
-                    <Route exact path="/map" component={StreetMap} />
+                    <Route exact path="/map" render={() => {
+                        return localStorage.getItem("center") ?
+                            <StreetMap /> :
+                            <Redirect to="/" />;
+                    }} />
                     <Route exact path="/reset-password" component={ResetPassword} />
 
                     <Route exact path="/">
