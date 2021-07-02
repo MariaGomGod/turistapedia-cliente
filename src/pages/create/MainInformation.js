@@ -14,7 +14,7 @@ export default function MainInformation({ pointOfInterest, setPointOfInterest })
 
     return (
         <>
-            <h3>Datos principales</h3>
+            <h3>Datos principales&nbsp;*</h3>
             <div className="form-group">
                 <div className="control">
                     <label htmlFor="name">Nombre</label>

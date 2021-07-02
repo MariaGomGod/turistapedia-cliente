@@ -88,21 +88,21 @@ export default function ResetPassword() {
                 <div className="form-section">
                     <div className="form-group">
                         <div className="control">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email&nbsp;*</label>
                             <input type="email" id="email" placeholder="Introduce tu Email" onInput={handleInput} required></input>
                         </div>
 
                         <div className="control">
-                            <label htmlFor="password">Nueva contraseña</label>
+                            <label htmlFor="password">Nueva contraseña&nbsp;*</label>
                             <input type="password" id="password" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
 
                         <div className="control">
-                            <label htmlFor="passwordCheck">Confirma tu nueva contraseña</label>
+                            <label htmlFor="passwordCheck">Confirma tu nueva contraseña&nbsp;*</label>
                             <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
                         <div className="control">
-                            <label htmlFor="securityQuestion">¿Cuál era el nombre de tu primer colegio?</label>
+                            <label htmlFor="securityQuestion">¿Cuál era el nombre de tu primer colegio?&nbsp;*</label>
                             <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
                         </div>
                     </div>

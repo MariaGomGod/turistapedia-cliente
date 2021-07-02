@@ -21,7 +21,7 @@ export default function Coordinates({ pointOfInterest, setPointOfInterest }) {
 
     return (
         <>
-            <h3>Coordenadas</h3>
+            <h3>Coordenadas&nbsp;*</h3>
             <div className="form-group">
                 <div className="control">
                     <label htmlFor="latitude">Latitud</label>

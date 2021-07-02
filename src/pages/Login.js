@@ -68,12 +68,12 @@ export default function Login() {
 
                     <div id="loginInputs">
                         <div className="inputBlock">
-                            <label htmlFor="emailInput">Email</label>
+                            <label htmlFor="emailInput">Email&nbsp;*</label>
                             <input required type="email" name="email" placeholder="Introduce tu Email" onInput={handleInput}></input>
                         </div>
 
                         <div className="inputBlock">
-                            <label htmlFor="passwordInput">Password</label>
+                            <label htmlFor="passwordInput">Password&nbsp;*</label>
                             <input required type="password" name="password" placeholder="********" onInput={handleInput}></input>
                         </div>
                     </div>

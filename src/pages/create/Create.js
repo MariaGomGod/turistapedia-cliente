@@ -34,21 +34,21 @@ export default function Create() {
                     categories: []
                 });
                 form.reset();           // vaciamos el formulario
-                NotificationManager.success("Punto de interés añadido con éxito", "Éxito", 1000);
+                NotificationManager.success("Punto de interés añadido con éxito. A la espera de confirmación por parte de un adminsitrador.", "Éxito", 3000);
             } else {
                 if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
                 } else if (response.status >= 400 && response.status < 500) {
-                    NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
+                    NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 2000);
                 } else {
-                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+                    NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 2000);
                 }
             }
             /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
             es exitosa o no. */
         })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 2000));
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     }
 

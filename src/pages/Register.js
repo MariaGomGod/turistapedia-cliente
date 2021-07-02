@@ -90,21 +90,21 @@ export default function Register() {
                 <div className="form-section">
                     <div className="form-group">
                         <div className="control">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email&nbsp;*</label>
                             <input type="email" id="email" placeholder="Introduce tu Email" onInput={handleInput} required></input>
                         </div>
 
                         <div className="control">
-                            <label htmlFor="password">Contraseña</label>
+                            <label htmlFor="password">Contraseña&nbsp;*</label>
                             <input type="password" id="password" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
 
                         <div className="control">
-                            <label htmlFor="passwordCheck">Confirma&nbsp;tu&nbsp;contraseña</label>
+                            <label htmlFor="passwordCheck">Confirma&nbsp;tu&nbsp;contraseña&nbsp;*</label>
                             <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
                         <div className="control">
-                            <label htmlFor="securityQuestion">¿Cuál&nbsp;era&nbsp;el&nbsp;nombre&nbsp;de&nbsp;tu&nbsp;primer&nbsp;colegio?</label>
+                            <label htmlFor="securityQuestion">¿Cuál&nbsp;era&nbsp;el&nbsp;nombre&nbsp;de&nbsp;tu&nbsp;primer&nbsp;colegio?&nbsp;*</label>
                             <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
                         </div>
                     </div>
