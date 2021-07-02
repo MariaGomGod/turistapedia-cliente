@@ -37,7 +37,7 @@ export default function Router() {
                     <Route exact path="/create" render={() => {
                         return localStorage.getItem("user") ?
                             <Create /> :
-                            <Redirect to="/login" />;
+                            <Redirect to="/login?redirect=/create" />;
                     }} />
 
                     <Route exact path="/admin/all" render={() => {
@@ -45,7 +45,7 @@ export default function Router() {
 
                         return authenticatedUser ?
                             JSON.parse(authenticatedUser).admin ? <ListPointOfInterest /> : <Redirect to="/error" /> :
-                            <Redirect to="/login" />;
+                            <Redirect to="/login?redirect=/admin/all" />;
                     }} />
 
                     <Route exact path="/admin/edit/:id" render={() => {
@@ -53,7 +53,7 @@ export default function Router() {
 
                         return authenticatedUser ?
                             JSON.parse(authenticatedUser).admin ? <EditPointOfInterest /> : <Redirect to="/error" /> :
-                            <Redirect to="/login" />;
+                            <Redirect to="/login?redirect=/admin/all" />;
                     }} />
 
                     <Route exact path="/map" render={() => {

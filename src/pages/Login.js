@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../App';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import './Login.sass';
 
 export default function Login() {
@@ -9,6 +9,7 @@ export default function Login() {
     const [loginForm, setLoginForm] = useState({});
     const { setAuthenticatedUser } = useContext(GlobalContext);
     const history = useHistory();
+    const query = new URLSearchParams(useLocation().search); // Accedemos a los query params de la página
 
     const login = e => {
         e.preventDefault();
@@ -29,7 +30,8 @@ export default function Login() {
                         const authenticatedUser = data.user || {};
                         localStorage.setItem("user", JSON.stringify(authenticatedUser));
                         setAuthenticatedUser(authenticatedUser);
-                        history.push('/');
+                        const redirectUrl = query.get("redirect") || '/';
+                        history.push(redirectUrl);
                     });
             } else {
                 if (response.status === 401) {

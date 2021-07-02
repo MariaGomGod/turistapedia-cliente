@@ -9,6 +9,7 @@ export default function PoiForm({ onSubmit, state, updateState }) {
     return (
         <form onSubmit={onSubmit}>
             <div className="form-section">
+                <h5>Los campos marcados con * son obligatorios</h5>
                 <MainInformation pointOfInterest={state} setPointOfInterest={updateState} />
                 <Coordinates pointOfInterest={state} setPointOfInterest={updateState} />
                 <Categories pointOfInterest={state} setPointOfInterest={updateState} />

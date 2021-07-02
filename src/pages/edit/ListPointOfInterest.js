@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { BASE_API_URL } from "../../config/config";
 import { useHistory } from 'react-router-dom';
 import './ListPointOfInterest.sass';
+import swal from 'sweetalert';
 import { GlobalContext } from '../../App';
 
 export default function ListPointOfInterest() {
@@ -24,7 +25,21 @@ export default function ListPointOfInterest() {
             .then(response => {
                 if (response.ok) {
                     response.json()
-                        .then(data => setList(data));
+                        .then(data => setList(data.sort((element1, element2) => {
+                            if (element1.active && !element2.active) {
+                                return 1;
+                            } else if (element2.active && !element1.active) {
+                                return -1;
+                            } else {
+                                // Para poder operar con las fechas (restarlas), hay que convertirlas de String a Date
+                                // El tipo Date no existe en JSON (el campo updatedAt viene del backend como un String)
+                                return Date.parse(element2.updatedAt) - Date.parse(element1.updatedAt);
+                            }
+                        })));
+                        // Utilizo el método sort() para que en el listado de puntos de interés, liste primero 
+                        // aquellos pendientes de publicar.
+                        // Si dos puntos de interés están publicados o despublicados, se ordenan por fecha,
+                        // los más recientes primero
                 } else if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
@@ -55,17 +70,28 @@ export default function ListPointOfInterest() {
                 // que implicaría que el valor de active pasará a ser true en el backend. Al igualar en el frontend active a publish, estamos
                 // reproduciendo ese mismo comportamiento en el frontend.
                 if (response.ok) {
-                    setList(currentList =>
-                        currentList.map(element => {
+                    setList(currentList => {
+                        const newList = currentList.map(element => {
                             if (element._id === id) {
                                 const copy = {...element};
                                 copy.active = publish;
+                                copy.updatedAt = new Date().toISOString();
                                 return copy;
                             } else {
                                 return element;
                             }
-                        })
-                    );
+                        });
+                        newList.sort((element1, element2) => {
+                            if (element1.active && !element2.active) {
+                                return 1;
+                            } else if (element2.active && !element1.active) {
+                                return -1;
+                            } else {
+                                return Date.parse(element2.updatedAt) - Date.parse(element1.updatedAt);
+                            }
+                        });
+                        return newList;
+                    });
                     NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 1000);
                 } else if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
@@ -80,8 +106,24 @@ export default function ListPointOfInterest() {
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
-    const remove = e => {
+    const showRemoveModal = e => {
+        // Utilizo la librería SweetAlert para que al pulsar el botón de eliminar un punto de interés, advierta al usuario administrador,
+        // con una alerta, si está realmente seguro de eliminar permanentemente (borrado físico) el punto de interés que ha seleccionado.
         const id = e.target.id;
+        swal({
+            title: "Eliminar",
+            text: "¿Seguro que deseas eliminar este punto de interés?",
+            icon: "warning",
+            buttons: ["Cancelar", "Confirmar"]
+        })
+        .then(response => {
+            if (response) {
+                remove(id);
+            }
+        })
+    }
+
+    const remove = id => {
         fetch(`${BASE_API_URL}/poi/${id}`, {
             method: 'DELETE',
             headers: {
@@ -138,7 +180,7 @@ export default function ListPointOfInterest() {
                                     }
                                 </td>
                                 <td className="action">
-                                    <button className="button" id={element._id} value="Eliminar" onClick={remove}>Eliminar</button>
+                                    <button className="button" id={element._id} value="Eliminar" onClick={showRemoveModal}>Eliminar</button>
                                 </td>
                             </tr>
                         );

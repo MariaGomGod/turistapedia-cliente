@@ -88,6 +88,7 @@ export default function Register() {
             <form onSubmit={register}>
 
                 <div className="form-section">
+                    <h5>Los campos marcados con * son obligatorios</h5>
                     <div className="form-group">
                         <div className="control">
                             <label htmlFor="email">Email&nbsp;*</label>

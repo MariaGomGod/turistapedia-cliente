@@ -21,14 +21,14 @@ export default function Coordinates({ pointOfInterest, setPointOfInterest }) {
 
     return (
         <>
-            <h3>Coordenadas&nbsp;*</h3>
+            <h3>Coordenadas</h3>
             <div className="form-group">
                 <div className="control">
-                    <label htmlFor="latitude">Latitud</label>
+                    <label htmlFor="latitude">Latitud&nbsp;*</label>
                     <input type="number" className="form-control" id="latitude" placeholder="Introduzca la latitud" defaultValue={pointOfInterest.location?.coordinates[1]} step="0.000000000000000001" required onInput={e => updateTextField(e, "latitude")}></input><br />
                 </div>
                 <div className="control">
-                    <label htmlFor="logitude">Longitud</label>
+                    <label htmlFor="logitude">Longitud&nbsp;*</label>
                     <input type="number" className="form-control" id="longitude" placeholder="Introduzca la longitud" defaultValue={pointOfInterest.location?.coordinates[0]} step="0.000000000000000001" required onInput={e => updateTextField(e, "longitude")}></input>
                 </div>
             </div>

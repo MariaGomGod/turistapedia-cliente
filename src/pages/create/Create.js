@@ -34,7 +34,7 @@ export default function Create() {
                     categories: []
                 });
                 form.reset();           // vaciamos el formulario
-                NotificationManager.success("Punto de interés añadido con éxito. A la espera de confirmación por parte de un adminsitrador.", "Éxito", 3000);
+                NotificationManager.success("Punto de interés añadido con éxito. A la espera de confirmación por parte de un administrador.", "Éxito", 3000);
             } else {
                 if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
