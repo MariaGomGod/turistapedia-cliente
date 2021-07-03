@@ -25,19 +25,23 @@ export default function Webs({ pointOfInterest, setPointOfInterest }) {
 
     return (
         <>
-            <h3>Web oficial/Red social y enlaces</h3>
+            <h3>Web&nbsp;oficial&nbsp;<span aria-hidden="true">/</span>&nbsp;red&nbsp;social&nbsp;y&nbsp;enlaces</h3>
             <div className="form-group">
                 <div className="control">
-                    <input type="text" className="form-control" placeholder="Web oficial" name="official" defaultValue={getLink('official')} onInput={updateLink}></input>
+                    <label htmlFor="official">Web&nbsp;oficial</label>
+                    <input type="text" className="form-control" id="official" name="official" defaultValue={getLink('official')} onInput={updateLink}></input>
                 </div>
                 <div className="control">
-                    <input type="text" className="form-control" placeholder="Tripadvisor" name="tripadvisor" defaultValue={getLink('tripadvisor')} onInput={updateLink}></input>
+                    <label htmlFor="tripadvisor">Tripadvisor</label>
+                    <input type="text" className="form-control" id="tripadvisor" name="tripadvisor" defaultValue={getLink('tripadvisor')} onInput={updateLink}></input>
                 </div>
                 <div className="control">
-                    <input type="text" className="form-control" placeholder="Facebook" name="facebook" defaultValue={getLink('facebook')} onInput={updateLink}></input>
+                    <label htmlFor="facebook">Facebook</label>
+                    <input type="text" className="form-control" id="facebook" name="facebook" defaultValue={getLink('facebook')} onInput={updateLink}></input>
                 </div>
                 <div className="control">
-                    <input type="text" className="form-control" placeholder="Otros" name="misc" defaultValue={getLink('misc')} onInput={updateLink}></input>
+                    <label htmlFor="misc">Otros</label>
+                    <input type="text" className="form-control" id="misc" name="misc" defaultValue={getLink('misc')} onInput={updateLink}></input>
                 </div>
             </div>
         </>

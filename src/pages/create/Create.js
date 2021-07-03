@@ -57,7 +57,7 @@ export default function Create() {
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al añadir un nuevo punto de interés. */}
 
-            <h1>Nuevo punto de interés</h1>
+            <h2>Nuevo punto de interés</h2>
             <PoiForm onSubmit={submit} state={pointOfInterest} updateState={setPointOfInterest} />
         </div>);
 }

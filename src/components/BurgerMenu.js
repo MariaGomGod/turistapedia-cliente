@@ -32,7 +32,7 @@ export default function BurgerMenu() {
                         <></> :
                         <>
                             <a href="/login" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Iniciar&nbsp;sesión</a>
-                            <a href="/register" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Crear&nbsp;cuenta</a>
+                            <a href="/register" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Crear&nbsp;una&nbsp;cuenta</a>
                         </>
                 }
                 <a href="/reset-password" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Restablecer&nbsp;contraseña</a>

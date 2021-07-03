@@ -4,6 +4,7 @@ import './App.sass';
 import { useState, createContext } from "react";
 
 import Router from "./components/Router";
+import './App.sass';
 
 export const GlobalContext = createContext({});
 

@@ -8,7 +8,7 @@ información, Google Maps cambia por un momento el centro del mapa (que no es el
 visual poco estético. No quiero que el mapa se re-renderice si no ha cambiado nada que le pueda afectar. Esto lo conseguimos "memoizando" (React.memo) el componente
 del mapa. Con ello, evitamos que React vuelva a re-renderizar el componente si no ha cambiado nada en sus props. */
 
-export default memo(function Map ({ pointsOfInterest, center, setCenter }) {
+export default memo(function Map({ pointsOfInterest, center, setCenter }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
@@ -46,12 +46,29 @@ export default memo(function Map ({ pointsOfInterest, center, setCenter }) {
         gestureHandling: "cooperative"
     };
 
+    const addAltTexToMarkers = () => {
+        document.querySelectorAll("div[aria-label='Map'] > div > div > div > div[role='button']")
+            .forEach(element => element.children[0].alt = element.title);
+    };
+
+    const removeAltTextFromMarkers = () => {
+        document.querySelectorAll("div[aria-label='Map'] > div > div > div > div[role='button']")
+            .forEach(element => element.children[0].alt = '');
+    };
+
     return isLoaded ? (
         <GoogleMap
             mapContainerClassName="map"
             center={center}
             zoom={zoom}
-            onLoad={setMap}
+            onLoad={map => {
+                setMap(map);
+                setTimeout(addAltTexToMarkers, 500);
+            }}
+            onCenterChanged={() => {
+                removeAltTextFromMarkers();
+                setTimeout(addAltTexToMarkers, 500);
+            }}
             options={mapOptions}
             onDragEnd={() => setCenter({ lat: map.getCenter().lat(), lng: map.getCenter().lng() })}
             onZoomChanged={() => map && setZoom(map.getZoom())}

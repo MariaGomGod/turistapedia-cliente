@@ -64,33 +64,33 @@ export default function Login() {
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al iniciar sesión. */}
             <div id="login">
-                <h1>¡Empieza&nbsp;a&nbsp;turistear&nbsp;ya!</h1>
+                <h2><span aria-hidden="true">¡</span>Empieza&nbsp;a&nbsp;turistear&nbsp;ya!</h2>
 
                 <form onSubmit={login}>
 
                     <div id="loginInputs">
                         <div className="inputBlock">
-                            <label htmlFor="emailInput">Email&nbsp;*</label>
+                            <label htmlFor="emailInput">Email&nbsp;<span aria-hidden="true">*</span><span className="sr-only"> (es obligatorio)</span></label>
                             <input required type="email" name="email" placeholder="Introduce tu Email" onInput={handleInput}></input>
                         </div>
 
                         <div className="inputBlock">
-                            <label htmlFor="passwordInput">Password&nbsp;*</label>
+                            <label htmlFor="passwordInput">Contraseña&nbsp;<span aria-hidden="true">*</span><span className="sr-only"> (es obligatorio)</span></label>
                             <input required type="password" name="password" placeholder="********" onInput={handleInput}></input>
                         </div>
                     </div>
 
                     <div className="inputBlock">
-                        <input type="submit" value="Entrar" className="button"></input>
+                        <button className="button" type="submit"><span className="sr-only">Haz click aquí para </span>Iniciar&nbsp;sesión</button>
                     </div>
 
                     <ul id="account-links">
 
                         <li>
-                            <a href="/reset-password" onClick={navigate} alt="contraseña olvidada">¿Olvidaste&nbsp;la&nbsp;contraseña?<span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;restaurarla</span></a>
+                            <a href="/reset-password" onClick={navigate} alt="contraseña olvidada"><span aria-hidden="true">¿</span>Olvidaste&nbsp;la&nbsp;contraseña?<span className="sr-only">&nbsp;Haz click aquí para reestablecerla</span></a>
                         </li>
                         <li>
-                            <a href="/register" onClick={navigate} alt="crear cuenta"><span className="sr-only">Haz&nbsp;click&nbsp;aquí&nbsp;para&nbsp;</span>Crear&nbsp;una&nbsp;cuenta</a>
+                            <a href="/register" onClick={navigate} alt="crear cuenta"><span className="sr-only">Haz click aquí para </span>Crear&nbsp;una&nbsp;cuenta</a>
                         </li>
                     </ul>
                 </form>

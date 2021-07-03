@@ -49,7 +49,7 @@ export default function Categories({ pointOfInterest, setPointOfInterest }) {
 
     return (
         <>
-            <h3>Categorías&nbsp;*</h3>
+            <h3>Categorías&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></h3>
             <div id="categories-checkbox" className="form-group checkbox">
                 <div className="control">
                     <label htmlFor="category-1">Restauración</label>

@@ -78,7 +78,7 @@ export default function EditPointOfInterest() {
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al haber editado un punto de interés. */}
 
-            <h1>Editar punto de interés</h1>
+            <h2>Editar punto de interés</h2>
             <PoiForm onSubmit={submit} state={edit} updateState={setEdit} />
         </div>);
 }

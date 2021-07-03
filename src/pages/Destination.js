@@ -41,15 +41,16 @@ export default function Destination() {
             {/* Este componente lo añado para que salga una notificación de éxito o error al indicar el destino. */}
             <div id="destination">
                 <div id="title">
-                    <h1>¿A&nbsp;dónde&nbsp;quieres&nbsp;ir?</h1>
+                    <h2><span aria-hidden="true">¿</span>A&nbsp;dónde&nbsp;quieres&nbsp;ir?</h2>
                 </div>
                 <form onSubmit={selectDestination}>
                     <div id="loginInputs">
                         <div className="inputBlock">
-                            <input required type="text" id="destinationInput" name="destinationInput" placeholder="Destino" onInput={handleInput}></input>
+                            <label htmlFor="destinationInput">Destino</label>
+                            <input required type="text" id="destinationInput" name="destinationInput" onInput={handleInput}></input>
                         </div>
                         <div className="inputBlock">
-                            <button className="button" type="submit">¡Vamos!</button>
+                            <button className="button" type="submit"><span aria-hidden="true">¡</span>Vamos!<span className="sr-only">&nbsp;Haz click aquí para iniciar tu viaje</span></button>
                         </div>
                     </div>
                 </form>

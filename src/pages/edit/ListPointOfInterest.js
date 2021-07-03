@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { BASE_API_URL } from "../../config/config";
 import { useHistory } from 'react-router-dom';
 import './ListPointOfInterest.sass';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { GlobalContext } from '../../App';
 
 export default function ListPointOfInterest() {
@@ -110,14 +110,24 @@ export default function ListPointOfInterest() {
         // Utilizo la librería SweetAlert para que al pulsar el botón de eliminar un punto de interés, advierta al usuario administrador,
         // con una alerta, si está realmente seguro de eliminar permanentemente (borrado físico) el punto de interés que ha seleccionado.
         const id = e.target.id;
-        swal({
+        Swal.fire({
             title: "Eliminar",
-            text: "¿Seguro que deseas eliminar este punto de interés?",
+            html: "<p aria-live='assertive'><span aria-hidden='true'>¿</span>Seguro que deseas eliminar este punto de interés?</p>",
             icon: "warning",
-            buttons: ["Cancelar", "Confirmar"]
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: false,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Confirmar",
+            customClass: {
+                confirmButton: 'button',
+                cancelButton: 'button'
+            },
+            focusConfirm: false,
+            focusCancel: true
         })
-        .then(response => {
-            if (response) {
+        .then(result => {
+            if (result.isConfirmed) {
                 remove(id);
             }
         })
@@ -152,7 +162,7 @@ export default function ListPointOfInterest() {
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al editar un nuevo punto de interés. */}
 
-            <h1 className="title">Puntos de interés existentes</h1>
+            <h2 className="title">Puntos de interés existentes</h2>
             <table>
                 <thead>
                     <tr>
@@ -170,17 +180,17 @@ export default function ListPointOfInterest() {
                                 <td className="name">{element.name}</td>
                                 <td className="categories">{element.categories.join(", ")}</td>
                                 <td className="action">
-                                    <button className="button" id={element._id} value="Editar" onClick={showDetails}>Editar</button>
+                                    <button className="button" id={element._id} value="Editar" onClick={showDetails}><span className="sr-only">Haz click aquí para&nbsp;</span>Editar<span className="sr-only">{element.name}</span></button>
                                 </td>
                                 <td className="action publish">
                                     {
                                         element.active ?
-                                            <button className="button" id={element._id} value="Despublicar" onClick={e => publishOrUnpublish(e, false)}>Despublicar</button> :
-                                            <button className="button" id={element._id} value="Publicar" onClick={e => publishOrUnpublish(e, true)}>Publicar</button>
+                                            <button className="button" id={element._id} value="Despublicar" onClick={e => publishOrUnpublish(e, false)}><span className="sr-only">Haz click aquí para&nbsp;</span>Despublicar<span className="sr-only">{element.name}</span></button> :
+                                            <button className="button" id={element._id} value="Publicar" onClick={e => publishOrUnpublish(e, true)}><span className="sr-only">Haz click aquí para&nbsp;</span>Publicar<span className="sr-only">{element.name}</span></button>
                                     }
                                 </td>
                                 <td className="action">
-                                    <button className="button" id={element._id} value="Eliminar" onClick={showRemoveModal}>Eliminar</button>
+                                    <button className="button" id={element._id} value="Eliminar" onClick={showRemoveModal}><span className="sr-only">Haz click aquí para&nbsp;</span>Eliminar<span className="sr-only">{element.name}</span></button>
                                 </td>
                             </tr>
                         );

@@ -81,34 +81,34 @@ export default function ResetPassword() {
             <NotificationContainer />
             {/* Este componente lo añado para que salga una notificación de éxito o error al obtener una nueva contraseña. */}
 
-            <h1>Obtén una nueva contraseña</h1>
+            <h2>Obtén una nueva contraseña</h2>
 
             <form onSubmit={resetDataPassword}>
 
                 <div className="form-section">
-                    <h5>Los campos marcados con * son obligatorios</h5>
+                    <h5 aria-hidden="true">Los&nbsp;campos&nbsp;marcados&nbsp;con&nbsp;*&nbsp;son&nbsp;obligatorios</h5>
                     <div className="form-group">
                         <div className="control">
-                            <label htmlFor="email">Email&nbsp;*</label>
+                            <label htmlFor="email">Email&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
                             <input type="email" id="email" placeholder="Introduce tu Email" onInput={handleInput} required></input>
                         </div>
 
                         <div className="control">
-                            <label htmlFor="password">Nueva contraseña&nbsp;*</label>
+                            <label htmlFor="password">Nueva&nbsp;contraseña&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
                             <input type="password" id="password" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
 
                         <div className="control">
-                            <label htmlFor="passwordCheck">Confirma tu nueva contraseña&nbsp;*</label>
+                            <label htmlFor="passwordCheck">Confirma&nbsp;tu&nbsp;nueva&nbsp;contraseña&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
                             <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
                         </div>
                         <div className="control">
-                            <label htmlFor="securityQuestion">¿Cuál era el nombre de tu primer colegio?&nbsp;*</label>
+                            <label htmlFor="securityQuestion"><span aria-hidden="true">¿</span>Cuál&nbsp;era&nbsp;el&nbsp;nombre&nbsp;de&nbsp;tu&nbsp;primer&nbsp;colegio?&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
                             <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
                         </div>
                     </div>
                 </div>
-                <button className="button" type="submit">Enviar</button>
+                <button className="button" type="submit"><span className="sr-only">Haz click aquí para </span>Enviar<span className="sr-only"> el formulario de reestablecimiento de contraseña</span></button>
             </form>
         </div>
     )

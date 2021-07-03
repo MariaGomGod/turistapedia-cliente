@@ -34,6 +34,7 @@ export default function PointOfInterest({ pointOfInterest, setInformation, setCe
   const longitude = pointOfInterest.location.coordinates[0];
   return <Marker
     icon={getIcon(pointOfInterest.categories)}
+    title={pointOfInterest.name}
     label={pointOfInterest.name}
     position={{ lat: latitude, lng: longitude }}
     onClick={() => {

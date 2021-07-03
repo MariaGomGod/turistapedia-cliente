@@ -27,35 +27,33 @@ export default function Header() {
     }, [setAuthenticatedUser]);
 
     return (
-        <>
-            <div id="header">
-                <div id="first-row">
-                    <a href="/" onClick={navigate}>
-                        <img id="logo" src={coldColors ? logoCb : logo} onClick={() => history.push('/')} alt="turistapedia" />
-                    </a>
-                    <h1>La&nbsp;web&nbsp;del&nbsp;turista</h1>
-                </div>
-                {
-                    authenticatedUser.email ?
-                        <div id="second-row">
-                            <LogOut authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser} />
-                        </div> :
-                        <></>
-                }
-                <div id="third-row">
-                    <BurgerMenu />
-                    <span className="button" onClick={() => setColdColors(currentColdColors => !currentColdColors)}>Colores&nbsp;{coldColors ? "calientes" : "fríos"}</span>
+        <div id="header">
+            <div id="first-row">
+                <a href="/" onClick={navigate}>
+                    <img role="button" tabIndex="0" id="logo" src={coldColors ? logoCb : logo} onClick={() => history.push('/')} alt="Acceder a la página principal de Turistapedia" title="Acceder a la página principal de Turistapedia" />
+                </a>
+                <h1>La&nbsp;web&nbsp;del&nbsp;turista</h1>
+            </div>
+            {
+                authenticatedUser.email ?
+                    <div id="second-row">
+                        <LogOut authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser} />
+                    </div> :
+                    <></>
+            }
+            <div id="third-row">
+                <BurgerMenu />
+                <span aria-hidden="true" className="button" onClick={() => setColdColors(currentColdColors => !currentColdColors)}>Colores&nbsp;{coldColors ? "calientes" : "fríos"}</span>
 
-                    {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 
+                {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 
                     con estilos sass (Le aplico la clase colorblind al div con clase App en App.js), y uso un logo distinto en la cabecera (logoCb) */}
 
-                    <span className="button" onClick={() => setVolume(currentVolume => currentVolume ? 0 : 1)}>{volume ? "Desa" : "A"}ctivar&nbsp;sonido</span>
+                <span aria-hidden="true" className="button" onClick={() => setVolume(currentVolume => currentVolume ? 0 : 1)}>{volume ? "Desa" : "A"}ctivar&nbsp;sonido</span>
 
-                    {/* El botón volumen aparece el último en el HTML pero en el componente Header aparece a la izquierda del botón de cambio de color. Esto es así porque
+                {/* El botón volumen aparece el último en el HTML pero en el componente Header aparece a la izquierda del botón de cambio de color. Esto es así porque
                     ambos botones flotan a la derecha. El primer botón flotará justo en el borde derecho de la página, y el de volumen también flotará a la derecha pero
                     apilado a la izquierda del otro botón. */}
-                </div>
             </div>
-        </>
+        </div>
     )
 }
