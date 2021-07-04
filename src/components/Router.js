@@ -40,20 +40,20 @@ export default function Router() {
                             <Redirect to="/login?redirect=/create" />;
                     }} />
 
-                    <Route exact path="/admin/all" render={() => {
+                    <Route exact path="/points-of-interest" render={() => {
                         const authenticatedUser = localStorage.getItem("user");
 
                         return authenticatedUser ?
-                            JSON.parse(authenticatedUser).admin ? <ListPointOfInterest /> : <Redirect to="/error" /> :
-                            <Redirect to="/login?redirect=/admin/all" />;
+                            <ListPointOfInterest /> : 
+                            <Redirect to="/login?redirect=/points-of-interest" />;
                     }} />
 
-                    <Route exact path="/admin/edit/:id" render={() => {
+                    <Route exact path="/edit/:id" render={() => {
                         const authenticatedUser = localStorage.getItem("user");
 
                         return authenticatedUser ?
-                            JSON.parse(authenticatedUser).admin ? <EditPointOfInterest /> : <Redirect to="/error" /> :
-                            <Redirect to="/login?redirect=/admin/all" />;
+                            <EditPointOfInterest /> :
+                            <Redirect to="/login?redirect=/points-of-interest" />;
                     }} />
 
                     <Route exact path="/map" render={() => {

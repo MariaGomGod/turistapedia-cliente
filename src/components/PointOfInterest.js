@@ -5,7 +5,7 @@ import Information from './Information';
 const getIcon = categories => {
   const baseIcon = {
     fillOpacity: 1,
-    scale: 0.06,
+    scale: 0.04,
     labelOrigin: {
       x: 300,
       y: 500

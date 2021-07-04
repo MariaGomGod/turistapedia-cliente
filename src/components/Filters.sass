@@ -60,8 +60,12 @@
                     &:last-child
                         margin-left: 4vw
 
-                    label
-                        font-size: 14px
+                    .control
+                        display: flex
+                        line-height: 16px
+
+                        label
+                            font-size: 14px
 
 @media all and ( max-width: 480px )
     #filters .border-section #filter-wrapper
@@ -69,6 +73,29 @@
             font-size: 85%
 
 @media all and ( max-width: 360px )
+    #filters .border-section
+        padding: 2vw
+
+        #filter-wrapper .filter
+            h3, .control label
+                font-size: 80%
+
+@media all and ( max-width: 350px )
     #filters .border-section #filter-wrapper .filter
-        h3, label
-            font-size: 80%
+        h3, .control label
+            font-size: 75%
+
+@media all and ( max-width: 340px )
+    #filters .border-section #filter-wrapper .filter
+        h3, .control label
+            font-size: 70%
+
+@media all and ( max-width: 330px )
+    #filters .border-section #filter-wrapper .filter
+        h3, .control label
+            font-size: 65%
+
+@media all and ( max-width: 320px )
+    #filters .border-section #filter-wrapper .filter
+        h3, .control label
+            font-size: 60%

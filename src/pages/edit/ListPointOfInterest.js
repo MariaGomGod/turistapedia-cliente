@@ -36,10 +36,10 @@ export default function ListPointOfInterest() {
                                 return Date.parse(element2.updatedAt) - Date.parse(element1.updatedAt);
                             }
                         })));
-                        // Utilizo el método sort() para que en el listado de puntos de interés, liste primero 
-                        // aquellos pendientes de publicar.
-                        // Si dos puntos de interés están publicados o despublicados, se ordenan por fecha,
-                        // los más recientes primero
+                    // Utilizo el método sort() para que en el listado de puntos de interés, liste primero 
+                    // aquellos pendientes de publicar.
+                    // Si dos puntos de interés están publicados o despublicados, se ordenan por fecha,
+                    // los más recientes primero
                 } else if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
@@ -52,7 +52,7 @@ export default function ListPointOfInterest() {
 
     const showDetails = e => {
         const id = e.target.id;
-        history.push(`/admin/edit/${id}`);
+        history.push(`/edit/${id}`);
     };
 
     const publishOrUnpublish = (e, publish) => {
@@ -73,7 +73,7 @@ export default function ListPointOfInterest() {
                     setList(currentList => {
                         const newList = currentList.map(element => {
                             if (element._id === id) {
-                                const copy = {...element};
+                                const copy = { ...element };
                                 copy.active = publish;
                                 copy.updatedAt = new Date().toISOString();
                                 return copy;
@@ -126,11 +126,11 @@ export default function ListPointOfInterest() {
             focusConfirm: false,
             focusCancel: true
         })
-        .then(result => {
-            if (result.isConfirmed) {
-                remove(id);
-            }
-        })
+            .then(result => {
+                if (result.isConfirmed) {
+                    remove(id);
+                }
+            })
     }
 
     const remove = id => {
@@ -169,8 +169,14 @@ export default function ListPointOfInterest() {
                         <th className="name">Nombre</th>
                         <th className="categories">Categorías</th>
                         <th>Editar</th>
-                        <th>Publicar&nbsp;/&nbsp;Despublicar</th>
-                        <th>Eliminar</th>
+                        {
+                            JSON.parse(localStorage.getItem('user')).admin ?
+                                <>
+                                    <th>Publicar&nbsp;/&nbsp;Despublicar</th>
+                                    <th>Eliminar</th>
+                                </> :
+                                <></>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -182,16 +188,22 @@ export default function ListPointOfInterest() {
                                 <td className="action">
                                     <button className="button" id={element._id} value="Editar" onClick={showDetails}><span className="sr-only">Haz click aquí para&nbsp;</span>Editar<span className="sr-only">{element.name}</span></button>
                                 </td>
-                                <td className="action publish">
-                                    {
-                                        element.active ?
-                                            <button className="button" id={element._id} value="Despublicar" onClick={e => publishOrUnpublish(e, false)}><span className="sr-only">Haz click aquí para&nbsp;</span>Despublicar<span className="sr-only">{element.name}</span></button> :
-                                            <button className="button" id={element._id} value="Publicar" onClick={e => publishOrUnpublish(e, true)}><span className="sr-only">Haz click aquí para&nbsp;</span>Publicar<span className="sr-only">{element.name}</span></button>
-                                    }
-                                </td>
-                                <td className="action">
-                                    <button className="button" id={element._id} value="Eliminar" onClick={showRemoveModal}><span className="sr-only">Haz click aquí para&nbsp;</span>Eliminar<span className="sr-only">{element.name}</span></button>
-                                </td>
+                                {
+                                    JSON.parse(localStorage.getItem('user')).admin ?
+                                        <>
+                                            <td className="action publish">
+                                                {
+                                                    element.active ?
+                                                        <button className="button" id={element._id} value="Despublicar" onClick={e => publishOrUnpublish(e, false)}><span className="sr-only">Haz click aquí para&nbsp;</span>Despublicar<span className="sr-only">{element.name}</span></button> :
+                                                        <button className="button" id={element._id} value="Publicar" onClick={e => publishOrUnpublish(e, true)}><span className="sr-only">Haz click aquí para&nbsp;</span>Publicar<span className="sr-only">{element.name}</span></button>
+                                                }
+                                            </td>
+                                            <td className="action">
+                                                <button className="button" id={element._id} value="Eliminar" onClick={showRemoveModal}><span className="sr-only">Haz click aquí para&nbsp;</span>Eliminar<span className="sr-only">{element.name}</span></button>
+                                            </td>
+                                        </> :
+                                        <></>
+                                }
                             </tr>
                         );
                     })}

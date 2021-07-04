@@ -38,13 +38,13 @@
                 text-align: center
                 vertical-align: middle
 
-        :first-child
+        thead tr:first-child
             td:first-child, th:first-child
                 border-top-left-radius: 5px
             td:last-child, th:last-child
                 border-top-right-radius: 5px
 
-        :last-child
+        tbody tr:last-child
             td:first-child, th:first-child
                 border-bottom-left-radius: 5px
             td:last-child, th:last-child
@@ -57,6 +57,22 @@
 .colorblind #pending table tr
     th, td
         border-color: $colorblind-tertiary !important
+
+.swal2-actions
+    .swal2-styled
+        padding: 0 !important
+        font-weight: none !important
+
+    .swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel
+        margin: 0 !important
+        border: none !important
+        border-radius: 2px !important
+        background-color: none !important
+        color: none !important
+        font-size: unset !important
+
+    .swal2-styled.swal2-cancel
+        margin-left: 8px !important
 
 @media all and ( max-width: 768px )
   body #list table
@@ -80,3 +96,15 @@
 @media all and ( max-width: 420px )
   body #list table
     font-size: 75%
+
+@media all and ( max-width: 360px )
+  body #list table
+    font-size: 65%
+
+@media all and ( max-width: 320px )
+  body #list table
+    font-size: 57%
+
+@media all and ( max-width: 280px )
+  body #list table
+    font-size: 50%

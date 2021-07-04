@@ -30,6 +30,8 @@ export default function EditPointOfInterest() {
                 } else if (response.status === 401) {
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
+                } else if (response.status === 403) {
+                    history.push('/error');
                 } else {
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }

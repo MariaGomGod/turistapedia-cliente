@@ -38,11 +38,7 @@ export default function BurgerMenu() {
                 <a href="/reset-password" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Restablecer&nbsp;contraseña</a>
                 <a href="/destination" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Elegir&nbsp;destino</a>
                 <a href="/create" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Crear&nbsp;punto&nbsp;de&nbsp;interés</a>
-                {
-                    localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).admin ?
-                        <a href="/admin/all" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Ver&nbsp;todos&nbsp;los&nbsp;puntos&nbsp;de&nbsp;interés</a> :
-                        <></>
-                }
+                <a href="/points-of-interest" onClick={navigate}><span className="sr-only">Haz click aquí para </span>Ver&nbsp;todos&nbsp;los&nbsp;puntos&nbsp;de&nbsp;interés</a>
             </div>
         </div>
     )

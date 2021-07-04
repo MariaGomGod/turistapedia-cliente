@@ -42,15 +42,15 @@ h1, h2
   padding: 0.5vw
 
 .button
-  background-color: $secondary
-  color: $senary
+  background-color: $secondary !important
+  color: $senary !important
   padding: 8px 6px
   border-radius: 2px
   width: 150px
   text-align: center
   height: 32px
   line-height: 16px
-  font-weight: bold
+  font-weight: bold !important
   font-size: 16px
   border: 0 !important
   background-image: none !important
@@ -88,6 +88,7 @@ h1, h2
 
             h5
                 font-style: italic
+                text-align: center
 
             .form-group
                 margin: 1vw
@@ -105,26 +106,29 @@ h1, h2
                     margin-top: 1vw
                     clear: both
     
-                .form-control  
-                    &[type=text], &[type=number]
+                    .form-control  
+                        &[type=text], &[type=number]
+                            width: 100%
+                            margin-top: 0.5vw
+                            height: 40px
+                            border-radius: 2px
+                            border: none
+
+                    textarea.form-control
+                        height: 200px
                         width: 100%
                         margin-top: 0.5vw
-                        height: 40px
-        
-                textarea.form-control
-                    height: 200px
-                    width: 100%
-                    margin-top: 0.5vw
-                    padding: 5px
-                    border-radius: 5px
-                    border-color: #fff
+                        padding: 5px
+                        border-radius: 2px
+                        border-color: #fff
 
-                    &:focus:valid
-                        border-color: blue
-        
+                        &:focus:valid
+                            border-color: blue
+
                 &.checkbox
                     .control
                         margin: 0
+                        line-height: 14px
         
                     input[type=checkbox]
                         float: left
@@ -147,6 +151,8 @@ h1, h2
 
         input, textarea
           width: 400px
+          clear: both
+          display: block
 
 .colorblind .form-wrapper
 
@@ -188,14 +194,14 @@ label
     margin-top: 2vw
 
 @media all and ( max-width: 640px )
-  body .button
-    font-size: 14px
-    width: 135px
-
-@media all and ( max-width: 640px )
-  body .button
-    font-size: 12px
-    width: 115px
+  body
+    .button
+      font-size: 12px
+      width: 115px
+      line-height: 14px
+    
+    h2
+      font-size: 20px
 
 @media all and ( max-width: 520px )
   body
@@ -207,10 +213,14 @@ label
       .notification
         margin-top: 0
         height: 70px
+        box-shadow: none
+        border-radius: 0
 
     .button
       font-size: 10px
       width: 98px
+      padding: 4px 3px
+      height: 24px
 
     input[type="text"], input[type="password"], input[type="email"]
       width: 50vw
@@ -234,3 +244,76 @@ label
 
     label
       font-size: 14px
+
+    .form-wrapper form .form-section .form-group .control .form-control  
+        &[type=text], &[type=number]
+            margin-top: 0.5vw
+            height: 22px
+
+@media all and ( max-width: 400px )
+  h5
+      font-size: 0.8em
+
+@media all and ( max-width: 360px )
+  body 
+    h2
+      font-size: 16px
+
+    .button
+      font-size: 8px
+      width: 75px
+
+    .form-wrapper form .form-section
+      margin-bottom: 2vw
+      font-size: 0.9em
+
+      .form-group
+          padding: 0
+
+          input, textarea
+              font-size: 10px
+              height: 16px
+
+              &[type="checkbox"]
+                height: 12px
+
+      h3
+        margin-top: 2vw
+        font-size: 16px
+
+    .account-form form .form-section .form-group
+        padding: 0
+        margin: 0
+
+        .control
+          margin-bottom: 2vw
+
+          input, textarea
+            width: 100% !important
+
+    label
+      font-size: 10px
+
+@media all and ( max-width: 376px )
+  body .notification-container .notification
+      height: 40px
+      padding: 6px 6px 6px 48px
+
+      .notification-message
+          font-size: 12px
+          line-height: 12px
+
+          h4
+              margin: 0
+
+@media all and ( max-width: 320px )
+  body .notification-container .notification
+      height: 32px
+      padding: 3px 3px 3px 48px
+
+      .notification-message
+          font-size: 10px
+          line-height: 10px
+
+          h4
+              margin: 0
