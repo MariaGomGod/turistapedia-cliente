@@ -14,7 +14,9 @@ export default function Destination() {
         e.preventDefault();
         const form = e.target;
 
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&address=${destination}`)
+        const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'AIzaSyD0ZkDZBRrd7hnaTqxAYWzbeRa3IDemKrc';
+
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${destination}`)
             // Utilizo el API de geocoding de Google para que resuelva las coordenadas de un punto dado proporcionado por el usuario.
             .then(response => response.json())
             .then(data => {
