@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 import NotificationContainer from 'react-notifications/lib/NotificationContainer';
 import { NotificationManager } from 'react-notifications';
+import { startSpeaking } from '../modules/Speech';
 
 export default function Destination() {
 
@@ -27,6 +28,7 @@ export default function Destination() {
                     localStorage.setItem("center", JSON.stringify(center));
                     history.push('/map');
                 } else {
+                    startSpeaking("No se han encontrado resultados, por favor inténtelo de nuevo con otra dirección.");
                     NotificationManager.warning("No se han encontrado resultados, por favor inténtelo de nuevo con otra dirección.", "Advertencia", 3000);
                 }
             });

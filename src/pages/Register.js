@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
+import { startSpeaking } from '../modules/Speech';
 
 export default function Register() {
 
@@ -25,6 +26,7 @@ export default function Register() {
                 if (response.ok) {
                     setRegisterData({}); // vaciamos el estado
                     form.reset();           // vaciamos el formulario
+                    startSpeaking("Registro exitoso. Redirigiendo a la página de inicio de sesión...");
                     NotificationManager.success("Registro exitoso. Redirigiendo a la página de inicio de sesión...", "Éxito", 3000);
                     setTimeout(() => history.push('/login'), 3000); // setTimeout nos permite redirigir al usuario a la página de login después de 3 segundos
 
@@ -34,15 +36,20 @@ export default function Register() {
                             const email = document.getElementById("email");
                             email.setCustomValidity("Este email ya está en uso, utiliza uno diferente");
                         }
+                        startSpeaking("Por favor, revise el formulario");
                         NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                     });
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 

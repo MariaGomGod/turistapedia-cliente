@@ -11,7 +11,7 @@ export const GlobalContext = createContext({});
 function App() {
 
   const [coldColors, setColdColors] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState("1");
   const [authenticatedUser, setAuthenticatedUser] = useState({});
 
   const logOut = () => {

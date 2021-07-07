@@ -5,11 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { InfoWindow } from '@react-google-maps/api';
 import { useContext, useEffect } from 'react';
 import { GlobalContext } from '../App';
-
-const synth = window.speechSynthesis;
-const speech = new SpeechSynthesisUtterance();
-speech.rate = 0.8;
-speech.lang = "es";
+import Speech from '../modules/Speech';
 
 const getIcon = description => {
   if (description === "facebook") {
@@ -25,18 +21,14 @@ export default function Information({ pointOfInterest, setInformation }) {
   const { volume } = useContext(GlobalContext);
 
   useEffect(() => {
-    synth.cancel();
-    speech.text = pointOfInterest.description;
-    speech.volume = volume;
-    if (!synth.speaking && speech.volume) {
-      synth.speak(speech);
-    }
+    Speech.stopSpeaking();
+    Speech.startSpeaking(pointOfInterest.description);
   }, [volume, pointOfInterest]);
 
   return (<InfoWindow
     position={{ lat: pointOfInterest.location.coordinates[1], lng: pointOfInterest.location.coordinates[0] }}
     onCloseClick={() => {
-      synth.cancel();
+      Speech.stopSpeaking();
       setInformation(null);
     }}>
     <div className="poi">

@@ -26,6 +26,12 @@ export default function Header() {
         setAuthenticatedUser(JSON.parse(authenticatedUser));
     }, [setAuthenticatedUser]);
 
+    useEffect(() => {
+        // Actualizamos el estado del volumen con lo que haya en el localStorage
+        const volume = localStorage.getItem("volume") || "1";
+        setVolume(volume);
+    }, [setVolume]);
+
     return (
         <div id="header">
             <div id="first-row">
@@ -48,7 +54,11 @@ export default function Header() {
                 {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 
                     con estilos sass (Le aplico la clase colorblind al div con clase App en App.js), y uso un logo distinto en la cabecera (logoCb) */}
 
-                <span aria-hidden="true" className="button" onClick={() => setVolume(currentVolume => currentVolume ? 0 : 1)}>{volume ? "Desa" : "A"}ctivar&nbsp;sonido</span>
+                <span aria-hidden="true" className="button" onClick={() => {
+                    setVolume(currentVolume => currentVolume === "1" ? "0" : "1");
+                    const storedVolume = localStorage.getItem("volume");
+                    localStorage.setItem("volume", storedVolume === "0" ? "1" : "0");
+                }}>{volume === "1" ? "Desa" : "A"}ctivar&nbsp;sonido</span>
 
                 {/* El botón volumen aparece el último en el HTML pero en el componente Header aparece a la izquierda del botón de cambio de color. Esto es así porque
                     ambos botones flotan a la derecha. El primer botón flotará justo en el borde derecho de la página, y el de volumen también flotará a la derecha pero
