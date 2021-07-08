@@ -21,7 +21,6 @@ export default function Information({ pointOfInterest, setInformation }) {
   const { volume } = useContext(GlobalContext);
 
   useEffect(() => {
-    Speech.stopSpeaking();
     Speech.startSpeaking(pointOfInterest.description);
   }, [volume, pointOfInterest]);
 

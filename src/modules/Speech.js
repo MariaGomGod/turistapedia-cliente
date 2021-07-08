@@ -5,6 +5,7 @@ speech.rate = 0.8;
 speech.lang = "es";
 
 const startSpeaking = text => {
+    stopSpeaking();
     const volume = localStorage.getItem("volume");
     speech.text = text;
     speech.volume = volume;
