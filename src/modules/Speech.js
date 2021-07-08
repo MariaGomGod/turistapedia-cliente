@@ -8,7 +8,7 @@ const startSpeaking = text => {
     const volume = localStorage.getItem("volume");
     speech.text = text;
     speech.volume = volume;
-    if (!synth.speaking && speech.volume === "1") {
+    if (!synth.speaking && (speech.volume !== "0")) {
         synth.speak(speech);
     }
 }

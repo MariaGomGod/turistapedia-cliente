@@ -3,6 +3,8 @@ import { GlobalContext } from '../App';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory, useLocation } from "react-router-dom";
 import './Login.sass';
+import { startSpeaking } from '../modules/Speech';
+
 
 export default function Login() {
 
@@ -35,12 +37,17 @@ export default function Login() {
                     });
             } else {
                 if (response.status === 401) {
+                    startSpeaking("Email o contraseña erróneos");
                     NotificationManager.warning("Email o contraseña erróneos", "Advertencia", 1000);
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             }
-        }).catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+        }).catch(() => {
+            startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+            NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+        });
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */;
     };
 

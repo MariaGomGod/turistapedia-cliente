@@ -4,6 +4,7 @@ import { BASE_API_URL } from "../../config/config";
 import PoiForm from '../../components/PoiForm';
 import { useHistory, useParams } from 'react-router-dom';
 import { GlobalContext } from '../../App';
+import { startSpeaking } from '../../modules/Speech';
 
 export default function EditPointOfInterest() {
 
@@ -28,15 +29,20 @@ export default function EditPointOfInterest() {
                     response.json()
                         .then(data => setEdit(data));
                 } else if (response.status === 401) {
+                    startSpeaking("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...");
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
                 } else if (response.status === 403) {
                     history.push('/error');
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
     }, [history, id, logOut]);
 
     const submit = e => {
@@ -57,21 +63,28 @@ export default function EditPointOfInterest() {
             }
         ).then(response => {
             if (response.ok) {
+                startSpeaking("Punto de interés modificado con éxito");
                 NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 1000);
             } else {
                     if (response.status === 401) {
+                        startSpeaking("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...");
                         NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                         setTimeout(logOut, 3000);
                     } else if (response.status >= 400 && response.status < 500) {
+                        startSpeaking("Por favor, revise el formulario");
                         NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                     } else {
+                        startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                         NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                     }
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     }
 

@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
 import { GlobalContext } from '../App';
+import { startSpeaking } from '../modules/Speech';
 
 export default function ResetPassword() {
 
@@ -33,20 +34,27 @@ export default function ResetPassword() {
                     localStorage.removeItem("token");
                     localStorage.removeItem("user");
                     setAuthenticatedUser({});
+                    startSpeaking("Nueva contraseña creada exitosamente. Redirigiendo a la página de inicio de sesión...");
                     NotificationManager.success("Nueva contraseña creada exitosamente. Redirigiendo a la página de inicio de sesión...", "Éxito", 3000);
                     setTimeout(() => history.push('/login'), 3000); // setTimeout nos permite redirigir al usuario a la página de login después de 3 segundos
 
                 } else if (response.status === 404) {
+                    startSpeaking("No existe un usuario con ese email, o la respuesta a la pregunta de seguridad no es correcta");
                     NotificationManager.warning("No existe un usuario con ese email, o la respuesta a la pregunta de seguridad no es correcta", "Advertencia", 1000);
                 } else if (response.status >= 400 && response.status < 500) {
+                    startSpeaking("Por favor, revise el formulario");
                     NotificationManager.warning("Por favor, revise el formulario", "Advertencia", 1000);
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 

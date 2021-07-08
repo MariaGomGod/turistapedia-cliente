@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import './ListPointOfInterest.sass';
 import Swal from 'sweetalert2';
 import { GlobalContext } from '../../App';
+import { startSpeaking } from '../../modules/Speech';
 
 export default function ListPointOfInterest() {
 
@@ -41,13 +42,18 @@ export default function ListPointOfInterest() {
                     // Si dos puntos de interés están publicados o despublicados, se ordenan por fecha,
                     // los más recientes primero
                 } else if (response.status === 401) {
+                    startSpeaking("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...");
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
     }, [history, logOut]);
 
     const showDetails = e => {
@@ -92,17 +98,23 @@ export default function ListPointOfInterest() {
                         });
                         return newList;
                     });
+                    startSpeaking("Punto de interés modificado con éxito");
                     NotificationManager.success("Punto de interés modificado con éxito", "Éxito", 1000);
                 } else if (response.status === 401) {
+                    startSpeaking("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...");
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
@@ -143,17 +155,23 @@ export default function ListPointOfInterest() {
             .then(response => {
                 if (response.ok) {
                     setList(currentList => currentList.filter(element => element._id !== id));
+                    startSpeaking("Punto de interés eliminado con éxito");
                     NotificationManager.success("Punto de interés eliminado con éxito", "Eliminado", 1000);
                 } else if (response.status === 401) {
+                    startSpeaking("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...");
                     NotificationManager.warning("La sesión ha expirado. Redirigiendo a la página de inicio de sesión...", "Advertencia", 3000);
                     setTimeout(logOut, 3000);
                 } else {
+                    startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
                     NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
                 }
                 /* NotificationManager se encarga de generar una notificación de éxito o error dependiendo de si la respuesta del servidor
                 es exitosa o no. */
             })
-            .catch(() => NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000));
+            .catch(() => {
+                startSpeaking("Se ha producido un error, inténtelo de nuevo en unos segundos");
+                NotificationManager.error("Se ha producido un error, inténtelo de nuevo en unos segundos", "Error", 1000);
+            });
         /* Añado un catch para gestionar errores de red (servidor caído, no hay conexión, etcétera). */
     };
 
