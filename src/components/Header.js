@@ -55,7 +55,11 @@ export default function Header() {
                     con estilos sass (Le aplico la clase colorblind al div con clase App en App.js), y uso un logo distinto en la cabecera (logoCb) */}
 
                 <span aria-hidden="true" className="button" onClick={() => {
-                    setVolume(currentVolume => currentVolume === "1" ? "0" : "1");
+                    setVolume(currentVolume => currentVolume === "0" ? "1" : "0");
+                    // Hacemos lo mismo con el localStorage dado que Speech no puede acceder a estados de React
+                    // al no ser un componente. Tenemos que insertar lo contrario de lo que hubiera hasta este 
+                    // momento. Para ello nos traemos lo que hay ahora mismo almacenado, y machacamos
+                    // la clave "volume" con el valor contrario
                     const storedVolume = localStorage.getItem("volume");
                     localStorage.setItem("volume", storedVolume === "0" ? "1" : "0");
                 }}>{volume === "1" ? "Desa" : "A"}ctivar&nbsp;sonido</span>
