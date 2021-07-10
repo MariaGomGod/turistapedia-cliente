@@ -3,7 +3,7 @@ import './Footer.sass';
 export default function Footer() {
     return (
         <>
-            <footer aria-atomic="true" role="contentinfo" aria-relevant="removals">
+            <footer role="contentinfo" aria-relevant="removals">
                 <nav id="navbar">
                     <ul>
                         <li className="nav-item">

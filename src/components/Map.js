@@ -48,7 +48,10 @@ export default memo(function Map({ pointsOfInterest, center, setCenter }) {
 
     const addAltTexToMarkers = () => {
         document.querySelectorAll("div[aria-label='Map'] > div > div > div > div[role='button']")
-            .forEach(element => element.children[0].alt = element.title);
+            .forEach(element => {
+                element.setAttribute('tabindex', 0);
+                element.children[0].alt = element.title;
+            });
     };
 
     const removeAltTextFromMarkers = () => {

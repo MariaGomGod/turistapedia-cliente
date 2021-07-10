@@ -30,22 +30,26 @@ export default function Information({ pointOfInterest, setInformation }) {
 
   return (<InfoWindow
     position={{ lat: pointOfInterest.location.coordinates[1], lng: pointOfInterest.location.coordinates[0] }}
+    onDomReady={() => {
+      const infoWindow = document.querySelector(".gm-style-iw.gm-style-iw-c");
+      infoWindow.setAttribute('aria-describedby', 'poi-description');
+    }}
     onCloseClick={() => {
       Speech.stopSpeaking();
       setInformation(null);
     }}>
-    <div aria-live="polite" aria-relevant="text" aria-atomic="true" className="poi" aria-describedby="poi-description">
-      <p role="figure" id="poi-description">{pointOfInterest.description}</p>
+    <div className="poi">
+      <p id="poi-description">{pointOfInterest.description}</p>
       <ul>
         {
           pointOfInterest.links.map((link, i) => {
-            return (<li role="presentation" key={i}>
+            return (<li key={i}>
               <span>
                 <FontAwesomeIcon icon={getIcon(link.description)} />
               </span>
               <span>
                 <span className="sr-only">Enlaza con</span>
-                <a className="poi-links" href={link.link} alt={'Página ' + (link.description === 'official' ? 'oficial' : 'de ' + link.description)} target="_blank" rel="noopener noreferrer">{link.link}</a>
+                <a className="poi-links" href={link.link} title={'Página ' + (link.description === 'official' ? 'oficial' : 'de ' + link.description)} target="_blank" rel="noopener noreferrer">{link.link}</a>
               </span>
             </li>);
           })
@@ -54,7 +58,7 @@ export default function Information({ pointOfInterest, setInformation }) {
       <ul>
         {
           pointOfInterest.photos?.map((photo, i) => {
-            return (<li role="presentation" key={i}>
+            return (<li key={i}>
               <img className="photos" src={photo.link} alt={photo.description} title={photo.description} />
             </li>);
           })

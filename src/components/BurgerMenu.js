@@ -5,6 +5,10 @@ import { useHistory } from 'react-router-dom';
 
 export default function BurgerMenu() {
 
+    const toggleActive = () => {
+        document.getElementById("myLinks").classList.toggle('active');
+    };
+
     const show = () => {
         document.getElementById("myLinks").classList.add('active');
     };
@@ -23,7 +27,7 @@ export default function BurgerMenu() {
 
     return (
         <div className="topnav" onMouseLeave={hide}>
-            <button className="icon" onClick={show} onMouseEnter={show}>
+            <button className="icon" onClick={toggleActive} onMouseEnter={show}>
                 <FontAwesomeIcon icon={faBars} />
             </button>
             <div id="myLinks">
