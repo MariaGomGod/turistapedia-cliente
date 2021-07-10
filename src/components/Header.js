@@ -28,12 +28,12 @@ export default function Header() {
 
     useEffect(() => {
         // Actualizamos el estado del volumen con lo que haya en el localStorage
-        const volume = localStorage.getItem("volume") || "1";
+        const volume = localStorage.getItem("volume");
         setVolume(volume);
     }, [setVolume]);
 
     return (
-        <div id="header">
+        <div id="header" role="banner">
             <div id="first-row">
                 <a href="/" onClick={navigate}>
                     <img role="button" tabIndex="0" id="logo" src={coldColors ? logoCb : logo} onClick={() => history.push('/')} alt="Acceder a la página principal de Turistapedia" title="Acceder a la página principal de Turistapedia" />

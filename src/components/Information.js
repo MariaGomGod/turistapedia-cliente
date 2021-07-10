@@ -21,7 +21,11 @@ export default function Information({ pointOfInterest, setInformation }) {
   const { volume } = useContext(GlobalContext);
 
   useEffect(() => {
-    Speech.startSpeaking(pointOfInterest.description);
+    if (volume === "1") {
+      Speech.startSpeaking(pointOfInterest.description);
+    } else {
+      Speech.stopSpeaking();
+    }
   }, [volume, pointOfInterest]);
 
   return (<InfoWindow
@@ -30,12 +34,12 @@ export default function Information({ pointOfInterest, setInformation }) {
       Speech.stopSpeaking();
       setInformation(null);
     }}>
-    <div className="poi">
-      <p>{pointOfInterest.description}</p>
+    <div aria-live="polite" aria-relevant="text" aria-atomic="true" className="poi" aria-describedby="poi-description">
+      <p role="figure" id="poi-description">{pointOfInterest.description}</p>
       <ul>
         {
           pointOfInterest.links.map((link, i) => {
-            return (<li key={i}>
+            return (<li role="presentation" key={i}>
               <span>
                 <FontAwesomeIcon icon={getIcon(link.description)} />
               </span>
@@ -50,7 +54,7 @@ export default function Information({ pointOfInterest, setInformation }) {
       <ul>
         {
           pointOfInterest.photos?.map((photo, i) => {
-            return (<li key={i}>
+            return (<li role="presentation" key={i}>
               <img className="photos" src={photo.link} alt={photo.description} title={photo.description} />
             </li>);
           })
