@@ -30,7 +30,10 @@ export default function Header() {
         // Actualizamos el estado del volumen con lo que haya en el localStorage
         const volume = localStorage.getItem("volume");
         setVolume(volume);
-    }, [setVolume]);
+        // Actualizamos el estado de la gama de colores con lo que haya en el localStorage
+        const coldColors = localStorage.getItem("coldColors") || "false";
+        setColdColors(coldColors === "true");
+    }, [setVolume, setColdColors]);
 
     return (
         <div id="header" role="banner">
@@ -49,7 +52,14 @@ export default function Header() {
             }
             <div id="third-row">
                 <BurgerMenu />
-                <span aria-hidden="true" className="button" onClick={() => setColdColors(currentColdColors => !currentColdColors)}>Colores&nbsp;{coldColors ? "calientes" : "fríos"}</span>
+                <span aria-hidden="true" className="button" onClick={() => {
+                    setColdColors(currentColdColors => !currentColdColors);
+                    // Hacemos lo mismo con el localStorage.
+                    // Para ello nos traemos lo que hay ahora mismo almacenado, y machacamos
+                    // la clave "coldColors" con el valor contrario
+                    const storedColdColors = localStorage.getItem("coldColors");
+                    localStorage.setItem("coldColors", storedColdColors === "false" ? "true" : "false");
+                }}>Colores&nbsp;{coldColors.toString() === "false" ? "fríos" : "calientes"}</span>
 
                 {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 
                     con estilos sass (Le aplico la clase colorblind al div con clase App en App.js), y uso un logo distinto en la cabecera (logoCb) */}
