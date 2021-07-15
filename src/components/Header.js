@@ -64,7 +64,7 @@ export default function Header() {
                 {/* Aplico un toggle para que cambie la gama de color para discapacitados visuales. Si el toggle está activo, implanto la gama de colores fríos 
                     con estilos sass (Le aplico la clase colorblind al div con clase App en App.js), y uso un logo distinto en la cabecera (logoCb) */}
 
-                <span tabindex="0" id="speech-toggle" className="button" onClick={() => {
+                <span tabIndex="0" id="speech-toggle" className="button" onClick={() => {
                     setVolume(currentVolume => currentVolume === "0" ? "1" : "0");
                     // Hacemos lo mismo con el localStorage dado que Speech no puede acceder a estados de React
                     // al no ser un componente. Tenemos que insertar lo contrario de lo que hubiera hasta este 
