@@ -10,9 +10,12 @@ const startSpeaking = text => {
     speech.text = text;
     speech.volume = volume;
     if (!synth.speaking && (speech.volume.toString() !== "0")) {
-        // Con esto comprobamos si la cabecera User-Agent contiene la palabra Chrome
-        // Hacemos esto para poder arreglar el defecto que se explica más abajo, sólo para Chrome
-        if (navigator.userAgent.indexOf('Chrome') !== -1) {
+        // Con esto comprobamos si la cabecera User-Agent contiene la palabra Chrome y no
+        // contiene Mobile
+        // Hacemos esto para poder arreglar el defecto que se explica más abajo,
+        // sólo para Chrome en escritorio
+        if (navigator.userAgent.indexOf('Chrome') !== -1 &&
+            navigator.userAgent.indexOf('Mobile') === -1) {
             // Hay un defecto en Chrome que hace que las locuciones largas se paren a la mitad
             // La manera de solucionarlo es programar una pausa y una continuación cada 10 segundos
             // Hacemos esto mientras dure la locución, cuando termine destruimos el objeto que representa
@@ -23,7 +26,7 @@ const startSpeaking = text => {
                 if (!speechSynthesis.speaking) {
                     clearInterval(interval);
                 }
-            }, 1000);
+            }, 10000);
         }
         synth.speak(speech);
     }

@@ -43,6 +43,8 @@ export default memo(function Map({ pointsOfInterest, center, setCenter }) {
         disableDoubleClickZoom: true, // Evitamos que se incremente el zoom al hacer doble click sobre cualquier punto del mapa
         disableDefaultUI: true, // Ocultamos los controles de aumentar y reducir zoom, entrar en modo Street View, ver a pantalla completa, etcétera
         zoom: zoom,
+        minZoom: zoom,
+        maxZoom: zoom,
         gestureHandling: "cooperative"
     };
 
