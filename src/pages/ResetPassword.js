@@ -3,6 +3,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import { useHistory } from "react-router-dom";
 import { GlobalContext } from '../App';
 import { startSpeaking } from '../modules/Speech';
+import { BASE_API_URL } from '../config/config';
 
 export default function ResetPassword() {
 
@@ -17,7 +18,7 @@ export default function ResetPassword() {
 
         const form = e.target;
 
-        fetch("http://localhost:8080/users/reset-password", {
+        fetch(`${BASE_API_URL}/users/reset-password`, {
             method: 'PUT',
             body: JSON.stringify(resetPassword),
             headers: {

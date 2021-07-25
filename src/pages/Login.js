@@ -4,7 +4,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import { useHistory, useLocation } from "react-router-dom";
 import './Login.sass';
 import { startSpeaking } from '../modules/Speech';
-
+import { BASE_API_URL } from '../config/config';
 
 export default function Login() {
 
@@ -16,7 +16,7 @@ export default function Login() {
     const login = e => {
         e.preventDefault();
 
-        fetch("http://localhost:8080/users/login",
+        fetch(`${BASE_API_URL}/users/login`,
             {
                 method: 'POST',
                 body: JSON.stringify(loginForm),

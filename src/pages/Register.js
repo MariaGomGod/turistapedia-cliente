@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { useHistory } from "react-router-dom";
 import { startSpeaking } from '../modules/Speech';
+import { BASE_API_URL } from '../config/config';
 
 export default function Register() {
 
@@ -15,7 +16,7 @@ export default function Register() {
 
         const form = e.target;
 
-        fetch("http://localhost:8080/users", {
+        fetch(`${BASE_API_URL}/users`, {
             method: 'POST',
             body: JSON.stringify(registerData),
             headers: {
