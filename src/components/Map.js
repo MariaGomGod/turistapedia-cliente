@@ -80,7 +80,7 @@ export default memo(function Map({ pointsOfInterest, center, setCenter }) {
             onUnmount={() => setMap(null)}>
             {
                 pointsOfInterest.map((pointOfInterest, i) =>
-                    <PointOfInterest key={i} pointOfInterest={pointOfInterest} setInformation={setInformation} setCenter={setCenter} />)
+                    <PointOfInterest key={i} pointOfInterest={pointOfInterest} setInformation={setInformation} />)
             }
             {information}
         </GoogleMap>

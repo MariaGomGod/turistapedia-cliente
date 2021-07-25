@@ -29,7 +29,7 @@ const getIcon = categories => {
   return { ...baseIcon, path: faLandmark.icon[4], fillColor: "#9C9CFF" };
 }
 
-export default function PointOfInterest({ pointOfInterest, setInformation, setCenter }) {
+export default function PointOfInterest({ pointOfInterest, setInformation }) {
   const latitude = pointOfInterest.location.coordinates[1];
   const longitude = pointOfInterest.location.coordinates[0];
   return <Marker
@@ -38,7 +38,6 @@ export default function PointOfInterest({ pointOfInterest, setInformation, setCe
     label={pointOfInterest.name}
     position={{ lat: latitude, lng: longitude }}
     onClick={() => {
-      setCenter({ lat: latitude, lng: longitude }); // Movemos el mapa centŕandolo en las coordenadas que les hemos pasado
       setInformation(<Information pointOfInterest={pointOfInterest} setInformation={setInformation} />);
     }}
     zIndex={999} />;
