@@ -23,7 +23,7 @@ const startSpeaking = text => {
                 if (!speechSynthesis.speaking) {
                     clearInterval(interval);
                 }
-            }, 10000);
+            }, 1000);
         }
         synth.speak(speech);
     }
