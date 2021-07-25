@@ -26,6 +26,7 @@ export default function Information({ pointOfInterest, setInformation }) {
     } else {
       Speech.stopSpeaking();
     }
+    return () => Speech.stopSpeaking();
   }, [volume, pointOfInterest]);
 
   return (<InfoWindow
