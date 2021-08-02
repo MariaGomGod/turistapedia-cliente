@@ -78,12 +78,12 @@ export default function Login() {
                     <div id="loginInputs">
                         <div className="inputBlock">
                             <label htmlFor="emailInput">Email&nbsp;<span aria-hidden="true">*</span><span className="sr-only"> (es obligatorio)</span></label>
-                            <input required type="email" name="email" placeholder="Introduce tu Email" onInput={handleInput}></input>
+                            <input required type="email" name="email" placeholder="Introduce tu Email" maxLength="100" onInput={handleInput}></input>
                         </div>
 
                         <div className="inputBlock">
                             <label htmlFor="passwordInput">Contraseña&nbsp;<span aria-hidden="true">*</span><span className="sr-only"> (es obligatorio)</span></label>
-                            <input required type="password" name="password" placeholder="********" onInput={handleInput}></input>
+                            <input required type="password" name="password" placeholder="********" maxLength="50" onInput={handleInput}></input>
                         </div>
                     </div>
 

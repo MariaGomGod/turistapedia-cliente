@@ -99,21 +99,21 @@ export default function ResetPassword() {
                     <div className="form-group">
                         <div className="control">
                             <label htmlFor="email">Email&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
-                            <input type="email" id="email" placeholder="Introduce tu Email" onInput={handleInput} required></input>
+                            <input type="email" id="email" placeholder="Introduce tu Email" maxLength="100" onInput={handleInput} required></input>
                         </div>
 
                         <div className="control">
                             <label htmlFor="password">Nueva&nbsp;contraseña&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
-                            <input type="password" id="password" placeholder="********" minLength="6" onInput={handlePassword} required></input>
+                            <input type="password" id="password" placeholder="********" minLength="6" maxLength="50" onInput={handlePassword} required></input>
                         </div>
 
                         <div className="control">
                             <label htmlFor="passwordCheck">Confirma&nbsp;tu&nbsp;nueva&nbsp;contraseña&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
-                            <input type="password" id="passwordCheck" placeholder="********" minLength="6" onInput={handlePassword} required></input>
+                            <input type="password" id="passwordCheck" placeholder="********" minLength="6" maxLength="50" onInput={handlePassword} required></input>
                         </div>
                         <div className="control">
                             <label htmlFor="securityQuestion"><span aria-hidden="true">¿</span>Cuál&nbsp;era&nbsp;el&nbsp;nombre&nbsp;de&nbsp;tu&nbsp;primer&nbsp;colegio?&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
-                            <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" onInput={handleInput} required></input>
+                            <input type="text" id="securityQuestion" placeholder="Introduce tu respuesta" maxLength="50" onInput={handleInput} required></input>
                         </div>
                     </div>
                 </div>

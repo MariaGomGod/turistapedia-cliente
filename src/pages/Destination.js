@@ -51,7 +51,7 @@ export default function Destination() {
                     <div id="loginInputs">
                         <div className="inputBlock">
                             <label htmlFor="destinationInput">Destino</label>
-                            <input required type="text" id="destinationInput" name="destinationInput" onInput={handleInput}></input>
+                            <input required type="text" id="destinationInput" name="destinationInput" maxLength="200" onInput={handleInput}></input>
                         </div>
                         <div className="inputBlock">
                             <button className="button" type="submit"><span aria-hidden="true">¡</span>Vamos!<span className="sr-only">&nbsp;Haz click aquí para iniciar tu viaje</span></button>

@@ -18,11 +18,11 @@ export default function MainInformation({ pointOfInterest, setPointOfInterest })
             <div className="form-group">
                 <div className="control">
                     <label htmlFor="name">Nombre&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
-                    <input type="text" className="form-control" id="name" placeholder="Introduzca el nombre" defaultValue={pointOfInterest.name} required onInput={e => updateTextField(e, "name")}></input>
+                    <input type="text" className="form-control" id="name" placeholder="Introduzca el nombre" maxLenght="200" defaultValue={pointOfInterest.name} required onInput={e => updateTextField(e, "name")}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="description">Descripción&nbsp;<span aria-hidden="true">*</span><span className="sr-only">(es obligatorio)</span></label>
-                    <textarea className="form-control" id="description" placeholder="Introduzca la descripción" defaultValue={pointOfInterest.description} required onInput={e => updateTextField(e, "description")}></textarea>
+                    <textarea className="form-control" id="description" placeholder="Introduzca la descripción" maxLenght="1000" defaultValue={pointOfInterest.description} required onInput={e => updateTextField(e, "description")}></textarea>
                 </div>
             </div>
         </>

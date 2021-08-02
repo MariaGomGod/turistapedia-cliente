@@ -29,19 +29,19 @@ export default function Webs({ pointOfInterest, setPointOfInterest }) {
             <div className="form-group">
                 <div className="control">
                     <label htmlFor="official">Web&nbsp;oficial</label>
-                    <input type="text" className="form-control" id="official" name="official" defaultValue={getLink('official')} onInput={updateLink}></input>
+                    <input type="text" className="form-control" id="official" name="official" maxLength="500" defaultValue={getLink('official')} onInput={updateLink}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="tripadvisor">Tripadvisor</label>
-                    <input type="text" className="form-control" id="tripadvisor" name="tripadvisor" defaultValue={getLink('tripadvisor')} onInput={updateLink}></input>
+                    <input type="text" className="form-control" id="tripadvisor" name="tripadvisor" maxLength="500" defaultValue={getLink('tripadvisor')} onInput={updateLink}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="facebook">Facebook</label>
-                    <input type="text" className="form-control" id="facebook" name="facebook" defaultValue={getLink('facebook')} onInput={updateLink}></input>
+                    <input type="text" className="form-control" id="facebook" name="facebook" maxLength="500" defaultValue={getLink('facebook')} onInput={updateLink}></input>
                 </div>
                 <div className="control">
                     <label htmlFor="misc">Otros</label>
-                    <input type="text" className="form-control" id="misc" name="misc" defaultValue={getLink('misc')} onInput={updateLink}></input>
+                    <input type="text" className="form-control" id="misc" name="misc" maxLength="500" defaultValue={getLink('misc')} onInput={updateLink}></input>
                 </div>
             </div>
         </>
