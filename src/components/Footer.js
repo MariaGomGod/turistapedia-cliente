@@ -19,7 +19,7 @@ export default function Footer() {
                             <a className="nav-link" href="/cookies"><span className="sr-only">Haz click aquí para acceder a la página de</span>ACEPTACIÓN&nbsp;COOKIES</a>
                         </li>
                     </ul>
-                    <p id="copyright" className="copyright"><span aria-hidden="true">&copy;&nbsp;</span>Copyright&nbsp;2021&nbsp;Turistapedia</p>
+                    <p id="copyright" className="copyright"><span aria-hidden="true">&copy;&nbsp;</span>Copyright&nbsp;{new Date().getFullYear()}&nbsp;Turistapedia</p>
                 </nav>
             </footer>
         </>
